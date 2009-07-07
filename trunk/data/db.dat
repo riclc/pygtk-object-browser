@@ -1,0 +1,5320 @@
+C gtk.gdk.Color
+c gtk.gdk.Color
+p red = 0
+p green = 0
+p blue = 0
+p pixel = 0
+m to_string
+
+C gtk.gdk.Cursor
+c gtk.gdk.Cursor
+p cursor_type
+c gtk.gdk.Cursor
+p display
+p cursor_type
+c gtk.gdk.Cursor
+p display
+p pixbuf
+p x
+p y
+c gtk.gdk.Cursor
+p source
+p mask
+p fg
+p bg
+p x
+p y
+m get_display
+
+C gtk.gdk.Display
+a gobject.GObject
+a gtk.gdk.Display
+c gtk.gdk.Display
+p display_name
+m get_name
+m get_n_screens
+m get_screen
+p screen_num
+m get_default_screen
+m pointer_ungrab
+p time_ = 0L
+m keyboard_ungrab
+p time_ = 0L
+m pointer_is_grabbed
+m beep
+m sync
+m close
+m list_devices
+m get_event
+m peek_event
+m put_event
+p event
+m set_double_click_time
+p msec
+m get_core_pointer
+m get_pointer
+m get_window_at_pointer
+m flush
+m set_double_click_distance
+p distance
+m supports_composite
+m supports_cursor_alpha
+m supports_cursor_color
+m get_default_cursor_size
+m get_maximal_cursor_size
+m get_default_group
+m supports_selection_notification
+m supports_clipboard_persistence
+m request_selection_notification
+p selection
+m store_clipboard
+p clipboard_window
+p time_
+p targets
+
+C gtk.gdk.Drawable
+a gobject.GObject
+a gtk.gdk.Drawable
+m get_size
+m set_colormap
+p colormap
+m get_colormap
+m get_visual
+m get_depth
+m get_screen
+m get_display
+m draw_point
+p gc
+p x
+p y
+m draw_line
+p gc
+p x1
+p y1
+p x2
+p y2
+m draw_rectangle
+p gc
+p filled
+p x
+p y
+p width
+p height
+m draw_arc
+p gc
+p filled
+p x
+p y
+p width
+p height
+p angle1
+p angle2
+m draw_polygon
+p gc
+p filled
+p points
+m draw_drawable
+p gc
+p src
+p xsrc
+p ysrc
+p xdest
+p ydest
+p width
+p height
+m draw_image
+p gc
+p image
+p xsrc
+p ysrc
+p xdest
+p ydest
+p width
+p height
+m draw_points
+p gc
+p points
+m draw_segments
+p gc
+p segs
+m draw_lines
+p gc
+p points
+m draw_pixbuf
+p gc
+p pixbuf
+p src_x
+p src_y
+p dest_x
+p dest_y
+p width = -1
+p height = -1
+p dither = gtk.gdk.RGB_DITHER_NORMAL
+p x_dither = 0
+p y_dither = 0
+m draw_glyphs
+p gc
+p font
+p x
+p y
+p glyphs
+m draw_layout_line
+p gc
+p x
+p y
+p line
+p layout
+p foreground = None
+p background = None
+m draw_layout
+p gc
+p x
+p y
+p layout
+p foreground = None
+p background = None
+m get_image
+p x
+p y
+p width
+p height
+m get_clip_region
+m get_visible_region
+m new_gc
+p foreground
+p background
+p font
+p function
+p fill
+p tile
+p stipple
+p clip_mask
+p subwindow_mode
+p ts_x_origin
+p ts_y_origin
+p clip_x_origin
+p clip_y_origin
+p graphics_exposures
+p line_width
+p line_style
+p cap_style
+p join_style
+m draw_rgb_image
+p gc
+p x
+p y
+p width
+p height
+p dith
+p rgb_buf
+p rowstride = -1
+p xdith = 0
+p ydith = 0
+m draw_rgb_32_image
+p gc
+p x
+p y
+p width
+p height
+p dith
+p rgb_buf
+p rowstride = -1
+p xdith = 0
+p ydith = 0
+m draw_gray_image
+p gc
+p x
+p y
+p width
+p height
+p dith
+p buf
+p rowstride = -1
+m draw_indexed_image
+p gc
+p x
+p y
+p width
+p height
+p dith
+p buf
+p rowstride
+p cmap
+m cairo_create
+
+C gtk.gdk.GC
+a gobject.GObject
+a gtk.gdk.GC
+c gtk.gdk.GC
+p drawable
+p foreground
+p background
+p font
+p function
+p fill
+p tile
+p stipple
+p clip_mask
+p subwindow_mode
+p ts_x_origin
+p ts_y_origin
+p clip_x_origin
+p clip_y_origin
+p graphics_exposures
+p line_width
+p line_style
+p cap_style
+p join_style
+m set_values
+p foreground
+p background
+p font
+p function
+p fill
+p tile
+p stipple
+p clip_mask
+p subwindow_mode
+p ts_x_origin
+p ts_y_origin
+p clip_x_origin
+p clip_y_origin
+p graphics_exposures
+p line_width
+p line_style
+p cap_style
+p join_style
+m set_foreground
+p color
+m set_background
+p color
+m set_function
+p function
+m set_fill
+p fill
+m set_tile
+p tile
+m set_stipple
+p stipple
+m set_ts_origin
+p x
+p y
+m set_clip_origin
+p x
+p y
+m set_clip_mask
+p mask
+m set_clip_rectangle
+p rectangle
+m set_clip_region
+p region
+m set_subwindow
+p mode
+m set_exposures
+p exposures
+m set_line_attributes
+p line_width
+p line_style
+p cap_style
+p join_style
+m set_dashes
+p dash_offset
+p dash_list
+m offset
+p x_offset
+p y_offset
+m copy
+p src_gc
+m set_colormap
+p colormap
+m get_colormap
+m set_rgb_fg_color
+p color
+m set_rgb_bg_color
+p color
+m get_screen
+
+C gtk.gdk.Pixbuf
+a gobject.GObject
+a gtk.gdk.Pixbuf
+c gtk.gdk.Pixbuf
+p colorspace
+p has_alpha
+p bits_per_sample
+p width
+p height
+m render_to_drawable
+p drawable
+p gc
+p src_x
+p src_y
+p dest_x
+p dest_y
+p width
+p height
+p dither
+p x_dither
+p y_dither
+m render_to_drawable_alpha
+p drawable
+p src_x
+p src_y
+p dest_x
+p dest_y
+p width
+p height
+p alpha_mode
+p alpha_threshold
+p dither
+p x_dither
+p y_dither
+m render_pixmap_and_mask
+p alpha_threshold = 127
+m get_from_drawable
+p src
+p cmap
+p src_x
+p src_y
+p dest_x
+p dest_y
+p width
+p height
+m get_from_image
+p src
+p cmap
+p src_x
+p src_y
+p dest_x
+p dest_y
+p width
+p height
+m get_colorspace
+m get_n_channels
+m get_has_alpha
+m get_bits_per_sample
+m get_pixels
+m get_width
+m get_height
+m get_rowstride
+m get_option
+p key
+m copy
+m fill
+p pixel
+m save
+p filename
+p type
+p options = None
+m save_to_callback
+p save_func
+p type
+p options = None
+p user_data = None
+m add_alpha
+p substitute_color
+p r
+p g
+p b
+m copy_area
+p src_x
+p src_y
+p width
+p height
+p dest_pixbuf
+p dest_x
+p dest_y
+m saturate_and_pixelate
+p dest
+p saturation
+p pixelate
+m scale
+p dest
+p dest_x
+p dest_y
+p dest_width
+p dest_height
+p offset_x
+p offset_y
+p scale_x
+p scale_y
+p interp_type
+m composite
+p dest
+p dest_x
+p dest_y
+p dest_width
+p dest_height
+p offset_x
+p offset_y
+p scale_x
+p scale_y
+p interp_type
+p overall_alpha
+m composite_color
+p dest
+p dest_x
+p dest_y
+p dest_width
+p dest_height
+p offset_x
+p offset_y
+p scale_x
+p scale_y
+p interp_type
+p overall_alpha
+p check_x
+p check_y
+p check_size
+p color1
+p color2
+m scale_simple
+p dest_width
+p dest_height
+p interp_type
+m composite_color_simple
+p dest_width
+p dest_height
+p interp_type
+p overall_alpha
+p check_size
+p color1
+p color2
+m get_pixels_array
+m subpixbuf
+p src_x
+p src_y
+p width
+p height
+m rotate_simple
+p angle
+m flip
+p horizontal
+
+C gtk.gdk.Pixmap
+a gobject.GObject
+a gtk.gdk.Drawable
+a gtk.gdk.Pixmap
+c gtk.gdk.Pixmap
+p drawable
+p width
+p height
+p depth = -1
+
+C gtk.gdk.Screen
+a gobject.GObject
+a gtk.gdk.Screen
+m get_default_colormap
+m set_default_colormap
+p colormap
+m get_system_colormap
+m get_system_visual
+m get_rgb_colormap
+m get_rgb_visual
+m get_root_window
+m get_display
+m get_number
+m get_width
+m get_height
+m get_width_mm
+m get_height_mm
+m list_visuals
+m get_toplevel_windows
+m make_display_name
+m get_n_monitors
+m get_monitor_geometry
+p monitor_num
+m get_monitor_at_point
+p x
+p y
+m get_monitor_at_window
+p window
+m broadcast_client_message
+p event
+m get_setting
+p name
+m get_rgba_colormap
+m get_rgba_visual
+m get_monitor_height_mm
+p monitor_num
+m get_monitor_width_mm
+p monitor_num
+m get_monitor_plug_name
+p monitor_num
+
+C gtk.gdk.Visual
+a gobject.GObject
+a gtk.gdk.Visual
+c gtk.gdk.Visual
+p depth
+p visual_type
+m get_screen
+
+C gtk.gdk.Window
+a gobject.GObject
+a gtk.gdk.Drawable
+a gtk.gdk.Window
+c gtk.gdk.Window
+p parent
+p width
+p height
+p window_type
+p event_mask
+p wclass
+p title = None
+p x = -1
+p y = -1
+p visual = None
+p colormap = None
+p cursor = None
+p wmclass_name = None
+p wmclass_class = None
+p override_redirect = -1
+m drag_begin
+p targets
+m input_set_extension_events
+p mask
+p mode
+m property_get
+p property
+p type = None
+p pdelete = False
+m property_change
+p property
+p type
+p format
+p mode
+p data
+m property_delete
+p property
+m selection_convert
+p selection
+p target
+p time
+m set_keep_above
+p setting
+m set_keep_below
+p setting
+m destroy
+m get_window_type
+m show
+m hide
+m withdraw
+m move
+p x
+p y
+m resize
+p width
+p height
+m move_resize
+p x
+p y
+p width
+p height
+m reparent
+p new_parent
+p x
+p y
+m clear
+m clear_area
+p x
+p y
+p width
+p height
+m clear_area_e
+p x
+p y
+p width
+p height
+m raise_
+m lower
+m focus
+p timestamp = 0L
+m set_user_data
+p user_data
+m get_user_data
+m set_override_redirect
+p override_redirect
+m add_filter
+p function
+p data = None
+m scroll
+p dx
+p dy
+m shape_combine_mask
+p shape_mask
+p offset_x
+p offset_y
+m set_child_shapes
+m merge_child_shapes
+m is_visible
+m is_viewable
+m get_state
+m set_static_gravities
+p use_static
+m get_type_hint
+m set_type_hint
+p hint
+m set_modal_hint
+p modal
+m set_skip_taskbar_hint
+p skips_taskbar
+m set_skip_pager_hint
+p skips_pager
+m set_geometry_hints
+p min_width = -1
+p min_height = -1
+p max_width = -1
+p max_height = -1
+p base_width = -1
+p base_height = -1
+p width_inc = -1
+p height_inc = -1
+p min_aspect = -1.0
+p max_aspect = -1.0
+m begin_paint_rect
+p rectangle
+m begin_paint_region
+p region
+m end_paint
+m set_title
+p title
+m set_role
+p role
+m set_transient_for
+p leader
+m set_background
+p color
+m set_back_pixmap
+p pixmap
+p parent_relative
+m set_cursor
+p cursor
+m get_geometry
+m get_position
+m get_origin
+m get_root_origin
+m get_frame_extents
+m get_pointer
+m get_parent
+m get_toplevel
+m get_children
+m get_events
+m set_events
+p event_mask
+m set_icon_list
+p pixbufs
+m set_icon
+p icon_window
+p pixmap
+p mask
+m set_icon_name
+p name
+m set_group
+p leader
+m get_group
+m set_decorations
+p decorations
+m get_decorations
+m set_functions
+p functions
+m iconify
+m deiconify
+m stick
+m unstick
+m maximize
+m unmaximize
+m fullscreen
+m unfullscreen
+m register_dnd
+m begin_resize_drag
+p edge
+p button
+p root_x
+p root_y
+p timestamp
+m begin_move_drag
+p button
+p root_x
+p root_y
+p timestamp
+m invalidate_rect
+p rect
+p invalidate_children
+m invalidate_region
+p region
+p invalidate_children
+m get_update_area
+m freeze_updates
+m thaw_updates
+m process_updates
+p update_children
+m set_accept_focus
+p accept_focus
+m enable_synchronized_configure
+m configure_finished
+m set_focus_on_map
+p focus_on_map
+m set_urgency_hint
+p urgent
+m move_region
+p region
+p dx
+p dy
+m shape_combine_region
+p shape_region
+p offset_x
+p offset_y
+m input_shape_combine_mask
+p mask
+p x
+p y
+m input_shape_combine_region
+p shape_region
+p offset_x
+p offset_y
+m beep
+m set_composited
+p composited
+m set_opacity
+p opacity
+m set_startup_id
+p startup_id
+m remove_redirection
+
+
+
+C gtk.ActionGroup
+a gobject.GObject
+a gtk.ActionGroup
+c gtk.ActionGroup
+p name
+m get_name
+m get_sensitive
+m set_sensitive
+p sensitive
+m get_visible
+m set_visible
+p visible
+m get_action
+p action_name
+m list_actions
+m add_action
+p action
+m add_action_with_accel
+p action
+p accelerator
+m remove_action
+p action
+m add_actions
+p entries
+p user_data = None
+m add_toggle_actions
+p entries
+p user_data = None
+m add_radio_actions
+p entries
+p value = 0
+p on_change = None
+p user_data = None
+m set_translation_domain
+p domain
+m translate_string
+p string
+
+
+
+C gtk.Action
+a gobject.GObject
+a gtk.Action
+c gtk.Action
+p name
+p label
+p tooltip
+p stock_id
+m get_name
+m is_sensitive
+m get_sensitive
+m is_visible
+m get_visible
+m activate
+m create_icon
+p icon_size
+m create_menu
+m create_menu_item
+m create_tool_item
+m connect_proxy
+p proxy
+m disconnect_proxy
+p proxy
+m get_proxies
+m connect_accelerator
+m disconnect_accelerator
+m block_activate_from
+p proxy
+m unblock_activate_from
+p proxy
+m get_accel_path
+m set_accel_path
+p accel_path
+m set_accel_group
+p accel_group
+m set_sensitive
+p sensitive
+m set_visible
+p visible
+m set_menu_item_type
+p visible
+m set_tool_item_type
+p visible
+
+
+
+C gtk.Adjustment
+a gobject.GObject
+a gtk.Object
+a gtk.Adjustment
+c gtk.Adjustment
+p value = 0
+p lower = 0
+p upper = 0
+p step_incr = 0
+p page_incr = 0
+p page_size = 0
+m set_all
+p value
+p lower
+p upper
+p step_increment
+p page_increment
+p page_size
+m changed
+m value_changed
+m clamp_page
+p lower
+p upper
+m get_value
+m set_value
+p value
+m configure
+p value
+p lower
+p upper
+p step_increment
+p page_increment
+p page_size
+m get_lower
+m set_lower
+p lower
+m get_page_increment
+m set_page_increment
+p page_increment
+m get_page_size
+m set_page_size
+p page_size
+m get_step_increment
+m set_step_increment
+p step_increment
+m get_upper
+m set_upper
+p upper
+
+
+
+C gtk.Alignment
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Alignment
+c gtk.Alignment
+p xalign = 0.0
+p yalign = 0.0
+p xscale = 0.0
+p yscale = 0.0
+m set
+p xalign
+p yalign
+p xscale
+p yscale
+m set_padding
+p padding_top
+p padding_bottom
+p padding_left
+p padding_right
+m get_padding
+
+
+
+C gtk.Arrow
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Misc
+a gtk.Arrow
+c gtk.Arrow
+p arrow_type
+p shadow_type
+m set
+p arrow_type
+p shadow_type
+
+
+
+C gtk.Bin
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+m get_child
+
+
+
+C gtk.Box
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Box
+m pack_start
+p child
+p expand = True
+p fill = True
+p padding = 0
+m pack_end
+p child
+p expand = True
+p fill = True
+p padding = 0
+m pack_start_defaults
+p widget
+m pack_end_defaults
+p widget
+m set_homogeneous
+p homogeneous
+m get_homogeneous
+m set_spacing
+p spacing
+m get_spacing
+m reorder_child
+p child
+p position
+m query_child_packing
+p child
+m set_child_packing
+p child
+p expand
+p fill
+p padding
+p pack_type
+
+
+
+C gtk.Builder
+a gobject.GObject
+a gtk.Builder
+c gtk.Builder
+m add_from_file
+p filename
+m add_from_string
+p buffer
+m connect_signals
+p object
+p user_data = None
+m get_object
+p name
+m get_objects
+m get_translation_domain
+m get_type_from_name
+p type_name
+m set_translation_domain
+p domain
+
+
+
+C gtk.ButtonBox
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Box
+a gtk.ButtonBox
+m get_layout
+m set_layout
+p layout_style
+m get_child_secondary
+p child
+m set_child_secondary
+p child
+p is_secondary
+
+
+
+C gtk.Button
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Button
+c gtk.Button
+p label = None
+p stock = None
+p use_underline = True
+m pressed
+m released
+m clicked
+m enter
+m leave
+m set_relief
+p newstyle
+m get_relief
+m set_label
+p label
+m get_label
+m set_use_underline
+p use_underline
+m get_use_underline
+m set_use_stock
+p use_stock
+m get_use_stock
+m set_focus_on_click
+p focus_on_click
+m get_focus_on_click
+m set_alignment
+p xalign
+p yalign
+m get_alignment
+m set_image
+p image
+m get_image
+
+
+
+C gtk.Calendar
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Calendar
+c gtk.Calendar
+m select_month
+p month
+p year
+m select_day
+p day
+m mark_day
+p day
+m unmark_day
+p day
+m clear_marks
+m get_display_options
+m set_display_options
+p flags
+m get_detail_height_rows
+m set_detail_height_rows
+p rows
+m get_detail_width_chars
+m set_detail_width_chars
+p chars
+m display_options
+p flags
+m get_date
+m freeze
+m thaw
+
+
+
+C gtk.CellRendererAccel
+a gobject.GObject
+a gtk.Object
+a gtk.CellRenderer
+a gtk.CellRendererText
+a gtk.CellRendererAccel
+c gtk.CellRendererAccel
+
+
+
+C gtk.CellRendererCombo
+a gobject.GObject
+a gtk.Object
+a gtk.CellRenderer
+a gtk.CellRendererText
+a gtk.CellRendererCombo
+c gtk.CellRendererCombo
+
+
+
+C gtk.CellRendererPixbuf
+a gobject.GObject
+a gtk.Object
+a gtk.CellRenderer
+a gtk.CellRendererPixbuf
+c gtk.CellRendererPixbuf
+
+
+
+C gtk.CellRendererProgress
+a gobject.GObject
+a gtk.Object
+a gtk.CellRenderer
+a gtk.CellRendererProgress
+c gtk.CellRendererProgress
+
+
+
+C gtk.CellRendererSpin
+a gobject.GObject
+a gtk.Object
+a gtk.CellRenderer
+a gtk.CellRendererText
+a gtk.CellRendererSpin
+c gtk.CellRendererSpin
+
+
+
+C gtk.CellRendererText
+a gobject.GObject
+a gtk.Object
+a gtk.CellRenderer
+a gtk.CellRendererText
+c gtk.CellRendererText
+m set_fixed_height_from_font
+p number_of_rows
+
+
+
+C gtk.CellRendererToggle
+a gobject.GObject
+a gtk.Object
+a gtk.CellRenderer
+a gtk.CellRendererToggle
+c gtk.CellRendererToggle
+m get_radio
+m set_radio
+p radio
+m get_active
+m set_active
+p setting
+
+
+
+C gtk.CellRenderer
+a gobject.GObject
+a gtk.Object
+a gtk.CellRenderer
+m get_size
+p widget
+p cell_area = None
+m render
+p window
+p widget
+p background_area
+p cell_area
+p expose_area
+p flags
+m activate
+p event
+p widget
+p path
+p background_area
+p cell_area
+p flags
+m start_editing
+p event
+p widget
+p path
+p background_area
+p cell_area
+p flags
+m editing_canceled
+m stop_editing
+p canceled
+m set_fixed_size
+p width
+p height
+m get_fixed_size
+
+
+
+C gtk.CheckButton
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Button
+a gtk.ToggleButton
+a gtk.CheckButton
+c gtk.CheckButton
+p label = None
+p use_underline = True
+
+
+
+C gtk.Clipboard
+a gobject.GObject
+a gtk.Clipboard
+c gtk.Clipboard
+p display = gtk.gdk.display_get_default()
+p selection = "CLIPBOARD"
+m get_display
+m set_with_data
+p targets
+p get_func
+p clear_func
+p user_data
+m get_owner
+m clear
+m set_text
+p text
+p len = -1
+m request_contents
+p target
+p callback
+p user_data = None
+m request_text
+p callback
+p user_data = None
+m request_targets
+p callback
+p user_data = None
+m wait_for_contents
+p target
+m wait_for_text
+m wait_is_text_available
+m wait_for_targets
+m wait_is_target_available
+p target
+m set_can_store
+p targets
+m store
+m request_image
+p callback
+p user_data = None
+m wait_for_image
+m set_image
+p pixbuf
+m wait_is_image_available
+m request_rich_text
+p buffer
+p callback
+p user_data = None
+m wait_for_rich_text
+p buffer
+m wait_is_rich_text_available
+p buffer
+m wait_is_uris_available
+
+
+
+C gtk.ComboBoxEntry
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.ComboBox
+a gtk.ComboBoxEntry
+c gtk.ComboBoxEntry
+p model = None
+p column = -1
+m set_text_column
+p text_column
+m get_text_column
+
+
+
+C gtk.ComboBox
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.ComboBox
+c gtk.ComboBox
+p model = None
+m get_wrap_width
+m set_wrap_width
+p width
+m get_row_span_column
+m set_row_span_column
+p row_span
+m get_column_span_column
+m set_column_span_column
+p column_span
+m get_button_sensitivity
+m set_button_sensitivity
+p sensitivity
+m get_active
+m set_active
+p index
+m get_active_iter
+m set_active_iter
+p iter
+m set_model
+p model = None
+m get_model
+m append_text
+p text
+m insert_text
+p position
+p text
+m prepend_text
+p text
+m remove_text
+p position
+m get_active_text
+m popup
+m popdown
+m get_popup_accessible
+m set_row_separator_func
+p func = None
+p data = None
+m get_add_tearoffs
+m set_add_tearoffs
+p add_tearoffs
+m get_focus_on_click
+m set_focus_on_click
+p focus_on_click
+m get_title
+m set_title
+p title
+
+
+
+C gtk.Combo
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Box
+a gtk.HBox
+a gtk.Combo
+c gtk.Combo
+m set_value_in_list
+p val
+p ok_if_empty
+m set_use_arrows
+p val
+m set_use_arrows_always
+p val
+m set_case_sensitive
+p val
+m set_item_string
+p item
+p item_value
+m set_popdown_strings
+p strings
+m disable_activate
+
+
+
+C gtk.Dialog
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Window
+a gtk.Dialog
+c gtk.Dialog
+p title = None
+p parent = None
+p flags = 0
+p buttons = None
+m add_action_widget
+p child
+p response_id
+m add_button
+p button_text
+p response_id
+m add_buttons
+p ...
+m set_response_sensitive
+p response_id
+p setting
+m set_default_response
+p response_id
+m set_has_separator
+p setting
+m get_has_separator
+m response
+p response_id
+m run
+m set_alternative_button_order
+p new_order
+m get_response_for_widget
+p widget
+m get_action_area
+m get_content_area
+
+
+
+C gtk.DrawingArea
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.DrawingArea
+c gtk.DrawingArea
+
+
+
+C gtk.EntryCompletion
+a gobject.GObject
+a gtk.EntryCompletion
+c gtk.EntryCompletion
+m get_entry
+m set_model
+p model = None
+m get_model
+m set_match_func
+p func
+p func_data
+m set_minimum_key_length
+p length
+m get_minimum_key_length
+m complete
+m insert_action_text
+p index
+p text
+m insert_action_markup
+p index
+p markup
+m delete_action
+p index
+m insert_prefix
+m set_text_column
+p column
+m get_text_column
+m set_inline_completion
+p inline_completion
+m get_inline_completion
+m set_inline_selection
+p inline_selection
+m get_inline_selection
+m set_popup_completion
+p popup_completion
+m get_popup_completion
+m set_popup_set_width
+p popup_set_width
+m get_popup_set_width
+m set_popup_single_match
+p popup_single_match
+m get_popup_single_match
+
+
+
+C gtk.Entry
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Entry
+c gtk.Entry
+p max = 0
+m set_visibility
+p visible
+m get_visibility
+m set_invisible_char
+p ch
+m get_invisible_char
+m set_has_frame
+p setting
+m get_has_frame
+m set_max_length
+p max
+m get_max_length
+m set_activates_default
+p setting
+m get_activates_default
+m set_width_chars
+p n_chars
+m get_width_chars
+m set_text
+p text
+m get_text
+m get_layout
+m get_layout_offsets
+m set_alignment
+p xalign
+m get_alignment
+m set_completion
+p width_chars
+m get_completion
+m set_inner_border
+p border
+m get_inner_border
+m get_cursor_hadjustment
+m set_cursor_hadjustment
+p adjustment
+m get_override_mode
+m set_override_mode
+p override
+m get_text_length
+
+
+
+C gtk.EventBox
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.EventBox
+c gtk.EventBox
+m get_visible_window
+m set_visible_window
+p visible_window
+m get_above_child
+m set_above_child
+p above_child
+
+
+
+C gtk.Expander
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Expander
+c gtk.Expander
+p label = None
+m set_expanded
+p expanded
+m get_expanded
+m set_spacing
+p spacing
+m get_spacing
+m set_label
+p label
+m get_label
+m set_use_underline
+p use_underline
+m get_use_underline
+m set_use_markup
+p use_markup
+m get_use_markup
+m set_label_widget
+p label_widget
+m get_label_widget
+
+
+
+C gtk.FileChooserButton
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Box
+a gtk.HBox
+a gtk.FileChooserButton
+a gtk.FileChooser
+c gtk.FileChooserButton
+p title
+p backend = None
+c gtk.FileChooserButton
+p dialog
+m get_title
+m set_title
+p title
+m get_width_chars
+m set_width_chars
+p n_chars
+m get_focus_on_click
+m set_focus_on_click
+p focus_on_click
+
+
+
+C gtk.FileChooserDialog
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Window
+a gtk.Dialog
+a gtk.FileChooserDialog
+c gtk.FileChooserDialog
+p title = None
+p parent = None
+p action = gtk.FILE_CHOOSER_ACTION_OPEN
+p buttons = None
+p backend = None
+
+
+
+C gtk.FileChooser
+m set_action
+p action
+m get_action
+m set_local_only
+p local_only
+m get_local_only
+m set_select_multiple
+p select_multiple
+m get_select_multiple
+m set_current_name
+p name
+m get_filename
+m set_filename
+p filename
+m select_filename
+p filename
+m unselect_filename
+p filename
+m select_all
+m unselect_all
+m get_filenames
+m set_current_folder
+p filename
+m get_current_folder
+m get_uri
+m set_uri
+p uri
+m select_uri
+p uri
+m unselect_uri
+p uri
+m get_uris
+m set_current_folder_uri
+p uri
+m get_current_folder_uri
+m set_preview_widget
+p preview_widget
+m get_preview_widget
+m set_preview_widget_active
+p active
+m get_preview_widget_active
+m set_use_preview_label
+p use_label
+m get_use_preview_label
+m get_preview_filename
+m get_preview_uri
+m set_extra_widget
+p extra_widget
+m get_extra_widget
+m add_filter
+p filter
+m remove_filter
+p filter
+m list_filters
+m set_filter
+p filter
+m get_filter
+m add_shortcut_folder
+p folder
+m remove_shortcut_folder
+p folder
+m list_shortcut_folders
+m add_shortcut_folder_uri
+p uri
+m remove_shortcut_folder_uri
+p uri
+m list_shortcut_folder_uris
+m set_show_hidden
+p show_hidden
+m get_show_hidden
+m set_do_overwrite_confirmation
+p do_overwrite_confirmation
+m get_do_overwrite_confirmation
+m get_current_folder_file
+m get_file
+m get_preview_file
+m select_file
+p file
+m set_current_folder_file
+p file
+m set_file
+p file
+m unselect_file
+p file
+
+
+
+C gtk.FileFilter
+a gobject.GObject
+a gtk.Object
+a gtk.FileFilter
+c gtk.FileFilter
+m set_name
+p name
+m get_name
+m add_mime_type
+p mime_type
+m add_pattern
+p pattern
+m add_custom
+p needed
+p func
+p data
+m get_needed
+m filter
+p filter_info
+m add_pixbuf_formats
+
+
+
+C gtk.FileSelection
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Window
+a gtk.Dialog
+a gtk.FileSelection
+c gtk.FileSelection
+p title = None
+m set_filename
+p filename
+m get_filename
+m complete
+p pattern
+m show_fileop_buttons
+m hide_fileop_buttons
+m get_selections
+m set_select_multiple
+p select_multiple
+m get_select_multiple
+
+
+
+C gtk.Fixed
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Fixed
+c gtk.Fixed
+m put
+p widget
+p x
+p y
+m move
+p widget
+p x
+p y
+m set_has_window
+p has_window
+m get_has_window
+
+
+
+C gtk.FontButton
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Button
+a gtk.FontButton
+c gtk.FontButton
+p fontname = None
+m get_title
+m set_title
+p title
+m get_use_font
+m set_use_font
+p use_font
+m get_use_size
+m set_use_size
+p use_size
+m get_font_name
+m set_font_name
+p fontname
+m get_show_style
+m set_show_style
+p show_style
+m get_show_size
+m set_show_size
+p show_size
+
+
+
+C gtk.FontSelectionDialog
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Window
+a gtk.Dialog
+a gtk.FontSelectionDialog
+c gtk.FontSelectionDialog
+p title
+m get_font_name
+m set_font_name
+p fontname
+m get_preview_text
+m set_preview_text
+p text
+m get_apply_button
+m get_cancel_button
+m get_ok_button
+
+
+
+C gtk.FontSelection
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Box
+a gtk.VBox
+a gtk.FontSelection
+c gtk.FontSelection
+m get_font_name
+m set_font_name
+p fontname
+m get_preview_text
+m set_preview_text
+p text
+m get_face
+m get_face_list
+m get_family
+m get_family_list
+m get_preview_entry
+m get_size
+m get_size_entry
+m get_size_list
+
+
+
+C gtk.Frame
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Frame
+c gtk.Frame
+p label = None
+m set_label
+p label
+m get_label
+m set_label_widget
+p label_widget
+m get_label_widget
+m set_label_align
+p xalign
+p yalign
+m get_label_align
+m set_shadow_type
+p type
+m get_shadow_type
+
+
+
+C gtk.HandleBox
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.HandleBox
+c gtk.HandleBox
+m set_shadow_type
+p type
+m get_shadow_type
+m set_handle_position
+p position
+m get_handle_position
+m set_snap_edge
+p edge
+m get_snap_edge
+m get_child_detached
+
+
+
+C gtk.HBox
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Box
+a gtk.HBox
+c gtk.HBox
+p homogeneous = False
+p spacing = 0
+
+
+
+C gtk.HPaned
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Paned
+a gtk.HPaned
+c gtk.HPaned
+
+
+
+C gtk.HScale
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Range
+a gtk.Scale
+a gtk.HScale
+c gtk.HScale
+p adjustment = None
+
+
+
+C gtk.HScrollbar
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Range
+a gtk.Scrollbar
+a gtk.HScrollbar
+c gtk.HScrollbar
+p adjustment = None
+
+
+
+C gtk.HSeparator
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Separator
+a gtk.HSeparator
+c gtk.HSeparator
+
+
+
+C gtk.Image
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Misc
+a gtk.Image
+c gtk.Image
+m set_from_pixmap
+p pixmap
+p mask
+m set_from_image
+p gdk_image
+p mask
+m set_from_file
+p filename
+m set_from_pixbuf
+p pixbuf
+m set_from_stock
+p stock_id
+p size
+m set_from_icon_set
+p icon_set
+p size
+m set_from_animation
+p animation
+m get_storage_type
+m get_pixmap
+m get_image
+m get_pixbuf
+m get_stock
+m get_icon_set
+m get_animation
+m get_icon_name
+m set_from_icon_name
+p icon_name
+p size
+m set_pixel_size
+p pixel_size
+m get_pixel_size
+m clear
+m set_from_gicon
+p gicon
+p size
+
+
+
+C gtk.InputDialog
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Window
+a gtk.Dialog
+a gtk.InputDialog
+c gtk.InputDialog
+
+
+
+C gtk.Label
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Misc
+a gtk.Label
+c gtk.Label
+p str = None
+m set_text
+p str
+m get_text
+m set_attributes
+p attrs
+m get_attributes
+m set_label
+p str
+m get_label
+m set_markup
+p str
+m set_use_markup
+p setting
+m get_use_markup
+m set_use_underline
+p setting
+m get_use_underline
+m set_markup_with_mnemonic
+p str
+m get_mnemonic_keyval
+m set_mnemonic_widget
+p widget
+m get_mnemonic_widget
+m set_text_with_mnemonic
+p str
+m set_justify
+p jtype
+m get_justify
+m set_pattern
+p pattern
+m set_line_wrap
+p wrap
+m get_line_wrap
+m set_selectable
+p setting
+m get_selectable
+m select_region
+p start_offset
+p end_offset
+m get_selection_bounds
+m get_layout
+m get_layout_offsets
+m set_ellipsize
+p mode
+m get_ellipsize
+m set_width_chars
+p n_chars
+m get_width_chars
+m set_single_line_mode
+p single_line_mode
+m get_single_line_mode
+m get_max_width_chars
+m set_max_width_chars
+p n_chars
+m get_angle
+m set_angle
+p angle
+
+
+
+C gtk.Layout
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Layout
+c gtk.Layout
+p hadjustment = None
+p vadjustment = None
+m put
+p child_widget
+p x
+p y
+m move
+p child_widget
+p x
+p y
+m set_size
+p width
+p height
+m get_size
+m get_hadjustment
+m get_vadjustment
+m set_hadjustment
+p adjustment
+m set_vadjustment
+p adjustment
+m get_bin_window
+
+
+
+C gtk.ListStore
+a gobject.GObject
+a gtk.ListStore
+c gtk.ListStore
+p column_type
+p ...
+m set_column_types
+p type
+p ...
+m set_value
+p iter
+p column
+p value
+m set
+p iter
+p column_num
+p value
+p ...
+m remove
+p iter
+m insert
+p position
+p row = None
+m insert_before
+p sibling
+p row = None
+m insert_after
+p sibling
+p row = None
+m prepend
+p row = None
+m append
+p row = None
+m clear
+m iter_is_valid
+p iter
+m reorder
+p new_order
+m swap
+p a
+p b
+m move_after
+p iter
+p position
+m move_before
+p iter
+p position
+
+
+
+C gtk.MenuBar
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.MenuShell
+a gtk.MenuBar
+c gtk.MenuBar
+m set_pack_direction
+p pack_dir
+m get_pack_direction
+m set_child_pack_direction
+p child_pack_dir
+m get_child_pack_direction
+
+
+
+C gtk.MenuItem
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Item
+a gtk.MenuItem
+c gtk.MenuItem
+p label = None
+p use_underline = True
+m set_submenu
+p submenu
+m get_submenu
+m remove_submenu
+m select
+m deselect
+m activate
+m toggle_size_request
+m toggle_size_allocate
+p allocation
+m set_right_justified
+p right_justified
+m get_right_justified
+m set_accel_path
+p accel_path
+m get_accel_path
+
+
+
+C gtk.Menu
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.MenuShell
+a gtk.Menu
+c gtk.Menu
+m popup
+p parent_menu_shell
+p parent_menu_item
+p func
+p button
+p activate_time
+p data = None
+m reposition
+m popdown
+m get_active
+m set_active
+p index
+m set_accel_group
+p accel_group
+m get_accel_group
+m set_accel_path
+p accel_path
+m get_accel_path
+m attach_to_widget
+p attach_widget
+p detach_func
+m detach
+m get_attach_widget
+m set_tearoff_state
+p torn_off
+m get_tearoff_state
+m set_title
+p title
+m get_title
+m reorder_child
+p child
+p position
+m set_screen
+p screen
+m attach
+p child
+p left_attach
+p right_attach
+p top_attach
+p bottom_attach
+m set_monitor
+p monitor_num
+m get_monitor
+
+
+
+C gtk.MessageDialog
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Window
+a gtk.Dialog
+a gtk.MessageDialog
+c gtk.MessageDialog
+p parent = None
+p flags = 0
+p type = gtk.MESSAGE_INFO
+p buttons = gtk.BUTTONS_NONE
+p message_format = None
+m set_markup
+p str
+m format_secondary_text
+p message_format
+m format_secondary_markup
+p message_format
+m set_image
+p image
+m get_image
+
+
+
+C gtk.Notebook
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Notebook
+c gtk.Notebook
+m append_page
+p child
+p tab_label = None
+m append_page_menu
+p child
+p tab_label = None
+p menu_label = None
+m prepend_page
+p child
+p tab_label = None
+m prepend_page_menu
+p child
+p tab_label = None
+p menu_label = None
+m insert_page
+p child
+p tab_label = None
+p position = -1
+m insert_page_menu
+p child
+p tab_label = None
+p menu_label = None
+p position = -1
+m remove_page
+p page_num
+m get_current_page
+m get_nth_page
+p page_num
+m get_n_pages
+m page_num
+p child
+m set_current_page
+p page_num
+m next_page
+m prev_page
+m set_show_border
+p show_border
+m get_show_border
+m set_show_tabs
+p show_tabs
+m get_show_tabs
+m set_tab_pos
+p pos
+m get_tab_pos
+m set_scrollable
+p scrollable
+m get_scrollable
+m popup_enable
+m popup_disable
+m get_tab_label
+p child
+m set_tab_label
+p child
+p tab_label = None
+m set_tab_label_text
+p child
+p tab_text
+m get_tab_label_text
+p child
+m get_menu_label
+p child
+m set_menu_label
+p child
+p menu_label = None
+m set_menu_label_text
+p child
+p menu_text
+m get_menu_label_text
+p child
+m query_tab_label_packing
+p child
+m set_tab_label_packing
+p child
+p expand
+p fill
+p pack_type
+m reorder_child
+p child
+p position
+m set_group_id
+p group_id
+m get_group_id
+m get_tab_reorderable
+p child
+m set_tab_reorderable
+p child
+p reorderable
+m get_tab_detachable
+p child
+m set_tab_detachable
+p child
+p detachable
+
+
+
+C gtk.Object
+a gobject.GObject
+a gtk.Object
+m flags
+m set_flags
+p flags
+m unset_flags
+p flags
+m destroy
+
+
+
+C gtk.Paned
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Paned
+m add1
+p child
+m add2
+p child
+m pack1
+p child
+p resize = False
+p shrink = True
+m pack2
+p child
+p resize = True
+p shrink = True
+m get_position
+m set_position
+p position
+m compute_position
+p allocation
+p child1_req
+p child2_req
+m get_child1
+m get_child2
+
+
+
+C gtk.ProgressBar
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Progress
+a gtk.ProgressBar
+c gtk.ProgressBar
+m pulse
+m set_text
+p text
+m set_fraction
+p fraction
+m set_pulse_step
+p fraction
+m set_orientation
+p orientation
+m get_text
+m get_fraction
+m get_pulse_step
+m get_orientation
+m set_ellipsize
+p mode
+m get_ellipsize
+
+
+
+C gtk.RadioButton
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Button
+a gtk.ToggleButton
+a gtk.CheckButton
+a gtk.RadioButton
+c gtk.RadioButton
+p group = None
+p label = None
+p use_underline = True
+m get_group
+m set_group
+p group
+
+
+
+C gtk.Range
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Range
+m set_update_policy
+p policy
+m get_update_policy
+m set_adjustment
+p adjustment
+m get_adjustment
+m set_inverted
+p setting
+m get_inverted
+m set_increments
+p step
+p page
+m set_range
+p min
+p max
+m set_value
+p value
+m get_value
+m get_fill_level
+m set_fill_level
+p fill_level
+m get_restrict_to_fill_level
+m set_restrict_to_fill_level
+p restrict_to_fill_level
+m get_show_fill_level
+m set_show_fill_level
+p show_fill_level
+
+
+
+C gtk.RcStyle
+a gobject.GObject
+a gtk.RcStyle
+m copy
+
+
+
+C gtk.Ruler
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Ruler
+m set_metric
+p metric
+m set_range
+p lower
+p upper
+p position
+p max_size
+m draw_ticks
+m draw_pos
+m get_metric
+m get_range
+
+
+
+C gtk.ScaleButton
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Button
+a gtk.ScaleButton
+c gtk.ScaleButton
+p size
+p min
+p max
+p step
+p icons = None
+m get_adjustment
+m get_minus_button
+m get_orientation
+m get_plus_button
+m get_popup
+m get_value
+m set_adjustment
+p adjustment
+m set_icons
+p icons
+m set_orientation
+p icons
+m set_value
+p value
+
+
+
+C gtk.Scale
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Range
+a gtk.Scale
+m set_digits
+p digits
+m get_digits
+m set_draw_value
+p draw_value
+m get_draw_value
+m set_value_pos
+p pos
+m get_value_pos
+m get_layout
+m get_layout_offsets
+
+
+
+C gtk.Scrollbar
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Range
+a gtk.Scrollbar
+
+
+
+C gtk.ScrolledWindow
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.ScrolledWindow
+c gtk.ScrolledWindow
+p hadjustment = None
+p vadjustment = None
+m set_hadjustment
+p hadjustment
+m set_vadjustment
+p vadjustment
+m get_hadjustment
+m get_vadjustment
+m get_hscrollbar
+m get_vscrollbar
+m set_policy
+p hscrollbar_policy
+p vscrollbar_policy
+m get_policy
+p hscrollbar_policy
+p vscrollbar_policy
+m set_placement
+p window_placement
+m get_placement
+m set_shadow_type
+p type
+m get_shadow_type
+m add_with_viewport
+p child
+
+
+
+C gtk.SelectionData
+m set
+p type
+p format
+p data
+m set_text
+p str
+p len
+m get_text
+m get_targets
+m targets_include_text
+m tree_set_row_drag_data
+p tree_model
+p path
+m tree_get_row_drag_data
+m set_pixbuf
+p pixbuf
+m get_pixbuf
+m set_uris
+p uris
+m get_uris
+m targets_include_image
+p writable
+m targets_include_rich_text
+p buffer
+m targets_include_uri
+m get_data_type
+m get_display
+m get_format
+m get_length
+m get_target
+
+
+
+C gtk.Separator
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Separator
+
+
+
+C gtk.Settings
+a gobject.GObject
+a gtk.Settings
+m set_string_property
+p name
+p v_string
+p origin
+m set_long_property
+p name
+p v_long
+p origin
+m set_double_property
+p name
+p v_double
+p origin
+
+
+
+C gtk.SpinButton
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Entry
+a gtk.Editable
+a gtk.CellEditable
+a gtk.SpinButton
+c gtk.SpinButton
+p adjustment = None
+p climb_rate = 0.0
+p digits = 0
+m configure
+p adjustment
+p climb_rate
+p digits
+m set_adjustment
+p adjustment
+m get_adjustment
+m set_digits
+p digits
+m get_digits
+m set_increments
+p step
+p page
+m get_increments
+m set_range
+p min
+p max
+m get_range
+m get_value
+m get_value_as_int
+m set_value
+p value
+m set_update_policy
+p policy
+m get_update_policy
+m set_numeric
+p numeric
+m get_numeric
+m spin
+p direction
+p increment = 1.0
+m set_wrap
+p wrap
+m get_wrap
+m set_snap_to_ticks
+p snap_to_ticks
+m get_snap_to_ticks
+m update
+
+
+
+C gtk.Statusbar
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Box
+a gtk.HBox
+a gtk.Statusbar
+c gtk.Statusbar
+m get_context_id
+p context_description
+m push
+p context_id
+p text
+m pop
+p context_id
+m remove
+p context_id
+p message_id
+m set_has_resize_grip
+p setting
+m get_has_resize_grip
+
+
+
+C gtk.StatusIcon
+a gobject.GObject
+a gtk.StatusIcon
+c gtk.StatusIcon
+m get_storage_type
+m get_gicon
+m get_pixbuf
+m get_stock
+m get_icon_name
+m get_size
+m get_x11_window_id
+m set_tooltip
+p tooltip_text
+m set_visible
+p visible
+m get_visible
+m set_blinking
+p blinking
+m get_blinking
+m is_embedded
+m get_geometry
+p screen
+p area
+p orientation
+m get_screen
+m set_screen
+p screen
+m set_from_pixbuf
+p pixbuf
+m set_from_file
+p filename
+m set_from_stock
+p stock_id
+m set_from_icon_name
+p icon_name
+m set_from_gicon
+p gicon
+
+
+
+C gtk.Style
+a gobject.GObject
+a gtk.Style
+c gtk.Style
+m copy
+m attach
+p window
+m detach
+m set_background
+p window
+p state_type
+m apply_default_background
+p window
+p set_bg
+p state_type
+p area
+p x
+p y
+p width
+p height
+m lookup_icon_set
+p stock_id
+m render_icon
+p source
+p direction
+p state
+p size
+p widget
+p detail
+m paint_hline
+p window
+p state_type
+p area
+p widget
+p detail
+p x1
+p x2
+p y
+m paint_vline
+p window
+p state_type
+p area
+p widget
+p detail
+p y1
+p y2
+p x
+m paint_shadow
+p window
+p state_type
+p shadow_type
+p area
+p widget
+p detail
+p x
+p y
+p width
+p height
+m paint_polygon
+p window
+p state_type
+p shadow_type
+p area
+p widget
+p detail
+p points
+p fill
+m paint_arrow
+p window
+p state_type
+p shadow_type
+p area
+p widget
+p detail
+p arrow_type
+p fill
+p x
+p y
+p width
+p height
+m paint_diamond
+p window
+p state_type
+p shadow_type
+p area
+p widget
+p detail
+p x
+p y
+p width
+p height
+m paint_box
+p window
+p state_type
+p shadow_type
+p area
+p widget
+p detail
+p x
+p y
+p width
+p height
+m paint_flat_box
+p window
+p state_type
+p shadow_type
+p area
+p widget
+p detail
+p x
+p y
+p width
+p height
+m paint_check
+p window
+p state_type
+p shadow_type
+p area
+p widget
+p detail
+p x
+p y
+p width
+p height
+m paint_option
+p window
+p state_type
+p shadow_type
+p area
+p widget
+p detail
+p x
+p y
+p width
+p height
+m paint_tab
+p window
+p state_type
+p shadow_type
+p area
+p widget
+p detail
+p x
+p y
+p width
+p height
+m paint_shadow_gap
+p window
+p state_type
+p shadow_type
+p area
+p widget
+p detail
+p x
+p y
+p width
+p height
+p gap_side
+p gap_x
+p gap_width
+m paint_box_gap
+p window
+p state_type
+p shadow_type
+p area
+p widget
+p detail
+p x
+p y
+p width
+p height
+p gap_side
+p gap_x
+p gap_width
+m paint_extension
+p window
+p state_type
+p shadow_type
+p area
+p widget
+p detail
+p x
+p y
+p width
+p height
+p gap_side
+m paint_focus
+p window
+p state_type
+p area
+p widget
+p detail
+p x
+p y
+p width
+p height
+m paint_slider
+p window
+p state_type
+p shadow_type
+p area
+p widget
+p detail
+p x
+p y
+p width
+p height
+p orientation
+m paint_handle
+p window
+p state_type
+p shadow_type
+p area
+p widget
+p detail
+p x
+p y
+p width
+p height
+p orientation
+m paint_expander
+p window
+p state_type
+p area
+p widget
+p detail
+p x
+p y
+p expander_style
+m paint_layout
+p window
+p state_type
+p use_text
+p area
+p widget
+p detail
+p x
+p y
+p layout
+m paint_resize_grip
+p window
+p state_type
+p area
+p widget
+p detail
+p edge
+p x
+p y
+p width
+p height
+
+
+
+C gtk.Table
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Table
+c gtk.Table
+p rows = 1
+p columns = 1
+p homogeneous = False
+m resize
+p rows
+p columns
+m attach
+p child
+p left_attach
+p right_attach
+p top_attach
+p bottom_attach
+p xoptions = gtk.EXPAND|gtk.FILL
+p yoptions = gtk.EXPAND|gtk.FILL
+p xpadding = 0
+p ypadding = 0
+m set_row_spacing
+p row
+p spacing
+m get_row_spacing
+p row
+m set_col_spacing
+p column
+p spacing
+m get_col_spacing
+p column
+m set_row_spacings
+p spacing
+m get_default_row_spacing
+m set_col_spacings
+p spacing
+m get_default_col_spacing
+m set_homogeneous
+p homogeneous
+m get_homogeneous
+
+
+
+C gtk.TextBuffer
+a gobject.GObject
+a gtk.TextBuffer
+c gtk.TextBuffer
+p table = None
+m get_line_count
+m get_char_count
+m get_tag_table
+m set_text
+p text
+m insert
+p iter
+p text
+m insert_at_cursor
+p text
+m insert_interactive
+p iter
+p text
+p default_editable
+m insert_interactive_at_cursor
+p text
+p default_editable
+m insert_range
+p iter
+p start
+p end
+m insert_range_interactive
+p iter
+p start
+p end
+p default_editable
+m insert_with_tags
+p iter
+p text
+p ...
+m insert_with_tags_by_name
+p iter
+p text
+p ...
+m delete
+p start
+p end
+m delete_interactive
+p start_iter
+p end_iter
+p default_editable
+m get_text
+p start
+p end
+p include_hidden_chars = True
+m get_slice
+p start
+p end
+p include_hidden_chars = True
+m insert_pixbuf
+p iter
+p pixbuf
+m insert_child_anchor
+p iter
+p anchor
+m create_child_anchor
+p iter
+m create_mark
+p mark_name
+p where
+p left_gravity = False
+m move_mark
+p mark
+p where
+m delete_mark
+p mark
+m get_mark
+p name
+m move_mark_by_name
+p name
+p where
+m delete_mark_by_name
+p name
+m get_insert
+m get_selection_bound
+m place_cursor
+p where
+m select_range
+p ins
+p bound
+m apply_tag
+p tag
+p start
+p end
+m remove_tag
+p tag
+p start
+p end
+m apply_tag_by_name
+p name
+p start
+p end
+m remove_tag_by_name
+p name
+p start
+p end
+m remove_all_tags
+p start
+p end
+m create_tag
+p tag_name = None
+p ...
+m get_iter_at_line_offset
+p line_number
+p char_offset
+m get_iter_at_line_index
+p line_number
+p byte_index
+m get_iter_at_offset
+p char_offset
+m get_iter_at_line
+p line_number
+m get_start_iter
+m get_end_iter
+m get_bounds
+m get_iter_at_mark
+p mark
+m get_iter_at_child_anchor
+p anchor
+m get_modified
+m set_modified
+p setting
+m add_selection_clipboard
+p clipboard
+m remove_selection_clipboard
+p clipboard
+m cut_clipboard
+p clipboard
+p default_editable
+m copy_clipboard
+p clipboard
+m paste_clipboard
+p clipboard
+p override_location
+p default_editable
+m get_selection_bounds
+m delete_selection
+p interactive
+p default_editable
+m begin_user_action
+m end_user_action
+m backspace
+p iter
+p interactive
+p default_editable
+m get_has_selection
+m get_copy_target_list
+m get_paste_target_list
+m register_serialize_format
+p mime_type
+p function
+p user_data
+m register_serialize_tagset
+p tagset_name = NULL
+m register_deserialize_format
+p mime_type
+p function
+p user_data
+m register_deserialize_tagset
+p tagset_name = NULL
+m unregister_serialize_format
+p format
+m unregister_deserialize_format
+p format
+m deserialize_set_can_create_tags
+p format
+p can_create_tags
+m deserialize_get_can_create_tags
+p format
+m get_serialize_formats
+m get_deserialize_formats
+m serialize
+p content_buffer
+p format
+p start
+p end
+m deserialize
+p content_buffer
+p format
+p iter
+p data
+m add_mark
+p mark
+p where
+
+
+
+C gtk.TextIter
+m get_buffer
+m copy
+m get_offset
+m get_line
+m get_line_offset
+m get_line_index
+m get_visible_line_offset
+m get_visible_line_index
+m get_char
+m get_slice
+p end
+m get_text
+p end
+m get_visible_slice
+p end
+m get_visible_text
+p end
+m get_pixbuf
+m get_marks
+m get_child_anchor
+m get_toggled_tags
+p toggled_on
+m begins_tag
+p tag = None
+m ends_tag
+p tag = None
+m toggles_tag
+p tag = None
+m has_tag
+p tag
+m get_tags
+m editable
+p default_setting
+m can_insert
+p default_editability
+m starts_word
+m ends_word
+m inside_word
+m starts_sentence
+m ends_sentence
+m inside_sentence
+m starts_line
+m ends_line
+m is_cursor_position
+m get_chars_in_line
+m get_bytes_in_line
+m get_attributes
+p values
+m get_language
+m is_end
+m is_start
+m forward_char
+m backward_char
+m forward_chars
+p count
+m backward_chars
+p count
+m forward_line
+m backward_line
+m forward_lines
+p count
+m backward_lines
+p count
+m forward_word_ends
+p count
+m backward_word_starts
+p count
+m forward_word_end
+m backward_word_start
+m forward_cursor_position
+m backward_cursor_position
+m forward_cursor_positions
+p count
+m backward_cursor_positions
+p count
+m backward_sentence_start
+m forward_sentence_end
+m backward_sentence_starts
+p count
+m forward_sentence_ends
+p count
+m forward_visible_word_ends
+p count
+m backward_visible_word_starts
+p count
+m forward_visible_word_end
+m backward_visible_word_start
+m forward_visible_cursor_position
+m backward_visible_cursor_position
+m forward_visible_cursor_positions
+p count
+m backward_visible_cursor_positions
+p count
+m forward_visible_line
+m backward_visible_line
+m forward_visible_lines
+p count
+m backward_visible_lines
+p count
+m set_offset
+p char_offset
+m set_line
+p line_number
+m set_line_offset
+p char_on_line
+m set_line_index
+p byte_on_line
+m forward_to_end
+m forward_to_line_end
+m set_visible_line_offset
+p char_on_line
+m set_visible_line_index
+p byte_on_line
+m forward_to_tag_toggle
+p tag
+m backward_to_tag_toggle
+p tag
+m forward_find_char
+p pred
+p user_data
+p limit
+m backward_find_char
+p pred
+p user_data
+p limit
+m forward_search
+p str
+p flags
+p limit = None
+m backward_search
+p str
+p flags
+p limit = None
+m equal
+p rhs
+m compare
+p rhs
+m in_range
+p start
+p end
+m order
+p second
+
+
+
+C gtk.TextMark
+a gobject.GObject
+a gtk.TextMark
+m set_visible
+p setting
+m get_visible
+m get_name
+m get_deleted
+m get_buffer
+m get_left_gravity
+
+
+
+C gtk.TextTagTable
+a gobject.GObject
+a gtk.TextTagTable
+c gtk.TextTagTable
+m add
+p tag
+m remove
+p tag
+m lookup
+p name
+m foreach
+p func
+p data = None
+m get_size
+
+
+
+C gtk.TextTag
+a gobject.GObject
+a gtk.TextTag
+c gtk.TextTag
+p name = None
+m get_priority
+m set_priority
+p priority
+m event
+p event_object
+p event
+p iter
+
+
+
+C gtk.TextView
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.TextView
+c gtk.TextView
+p buffer = None
+m set_buffer
+p buffer
+m get_buffer
+m scroll_to_iter
+p iter
+p within_margin
+p use_align = False
+p xalign = 0.5
+p yalign = 0.5
+m scroll_to_mark
+p mark
+p within_margin
+p use_align = False
+p xalign = 0.5
+p yalign = 0.5
+m scroll_mark_onscreen
+p mark
+m move_mark_onscreen
+p mark
+m place_cursor_onscreen
+m get_visible_rect
+m set_cursor_visible
+p setting
+m get_cursor_visible
+m get_iter_location
+p iter
+m get_iter_at_location
+p x
+p y
+m get_line_yrange
+p iter
+m get_line_at_y
+p target_iter
+m buffer_to_window_coords
+p win
+p buffer_x
+p buffer_y
+m window_to_buffer_coords
+p win
+p window_x
+p window_y
+m get_window
+p win
+m get_window_type
+p window
+m set_border_window_size
+p type
+p size
+m get_border_window_size
+p type
+m forward_display_line
+p iter
+m backward_display_line
+p iter
+m forward_display_line_end
+p iter
+m backward_display_line_start
+p iter
+m starts_display_line
+p iter
+m move_visually
+p iter
+p count
+m add_child_at_anchor
+p child
+p anchor
+m add_child_in_window
+p child
+p which_window
+p xpos
+p ypos
+m move_child
+p child
+p xpos
+p ypos
+m set_wrap_mode
+p wrap_mode
+m get_wrap_mode
+m set_editable
+p setting
+m get_editable
+m set_overwrite
+p overwrite
+m get_overwrite
+m set_accepts_tab
+p accepts_tab
+m get_accepts_tab
+m set_pixels_above_lines
+p pixels_above_lines
+m get_pixels_above_lines
+m set_pixels_below_lines
+p pixels_below_lines
+m get_pixels_below_lines
+m set_pixels_inside_wrap
+p pixels_inside_wrap
+m get_pixels_inside_wrap
+m set_justification
+p justification
+m get_justification
+m set_left_margin
+p left_margin
+m get_left_margin
+m set_right_margin
+p right_margin
+m get_right_margin
+m set_indent
+p indent
+m get_indent
+m set_tabs
+p tabs
+m get_tabs
+m get_default_attributes
+
+
+
+C gtk.ToggleButton
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Button
+a gtk.ToggleButton
+c gtk.ToggleButton
+p label = None
+p use_underline = True
+m set_mode
+p draw_indicator
+m get_mode
+m set_active
+p is_active
+m get_active
+m toggled
+m set_inconsistent
+p setting
+m get_inconsistent
+
+
+
+C gtk.Toolbar
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Toolbar
+c gtk.Toolbar
+m insert
+p item
+p pos
+m get_item_index
+p item
+m get_n_items
+m get_nth_item
+p n
+m get_drop_index
+p x
+p y
+m set_drop_highlight_item
+p tool_item
+p index
+m set_show_arrow
+p show_arrow
+m get_show_arrow
+m get_relief_style
+m append_item
+p text
+p tooltip_text
+p tooltip_private_text
+p icon
+p callback
+p user_data = None
+m prepend_item
+p text
+p tooltip_text
+p tooltip_private_text
+p icon
+p callback
+p user_data
+m insert_item
+p text
+p tooltip_text
+p tooltip_private_text
+p icon
+p callback
+p user_data
+p position
+m insert_stock
+p stock_id
+p tooltip_text
+p tooltip_private_text
+p callback
+p user_data
+p position
+m append_space
+m prepend_space
+m insert_space
+p position
+m remove_space
+p position
+m append_element
+p type
+p widget
+p text
+p tooltip_text
+p tooltip_private_text
+p icon
+p callback
+p user_data
+m prepend_element
+p type
+p widget
+p text
+p tooltip_text
+p tooltip_private_text
+p icon
+p callback
+p user_data
+m insert_element
+p type
+p widget
+p text
+p tooltip_text
+p tooltip_private_text
+p icon
+p callback
+p user_data
+p position
+m append_widget
+p widget
+p tooltip_text
+p tooltip_private_text
+m prepend_widget
+p widget
+p tooltip_text
+p tooltip_private_text
+m insert_widget
+p widget
+p tooltip_text
+p tooltip_private_text
+p position
+m set_orientation
+p orientation
+m set_style
+p style
+m set_icon_size
+p icon_size
+m set_tooltips
+p enable
+m unset_style
+m unset_icon_size
+m get_orientation
+m get_style
+m get_icon_size
+m get_tooltips
+
+
+
+C gtk.ToolButton
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.ToolItem
+a gtk.ToolButton
+c gtk.ToolButton
+p icon_widget = None
+p label = None
+c gtk.ToolButton
+p stock_id
+m set_label
+p label
+m get_label
+m set_use_underline
+p use_underline
+m get_use_underline
+m set_stock_id
+p stock_id
+m get_stock_id
+m set_icon_name
+p icon_name
+m get_icon_name
+m set_icon_widget
+p icon_widget
+m get_icon_widget
+m set_label_widget
+p label_widget
+m get_label_widget
+
+
+
+C gtk.ToolItem
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.ToolItem
+c gtk.ToolItem
+m set_homogeneous
+p homogeneous
+m get_homogeneous
+m set_expand
+p expand
+m get_expand
+m set_tooltip
+p tooltips
+p tip_text = None
+p tip_private = None
+m set_use_drag_window
+p use_drag_window
+m get_use_drag_window
+m set_visible_horizontal
+p visible_horizontal
+m get_visible_horizontal
+m set_visible_vertical
+p visible_vertical
+m get_visible_vertical
+m set_is_important
+p is_important
+m get_is_important
+m get_icon_size
+m get_orientation
+m get_toolbar_style
+m get_relief_style
+m retrieve_proxy_menu_item
+m set_proxy_menu_item
+p menu_item_id
+p menu_item
+m get_proxy_menu_item
+p menu_item_id
+m rebuild_menu
+m set_tooltip_markup
+p markup
+m set_tooltip_text
+p text
+m toolbar_reconfigured
+
+
+
+C gtk.ToolShell
+a gobject.GInterface
+a gtk.ToolShell
+m get_icon_size
+m get_orientation
+m get_relief_style
+m get_style
+m rebuild_menu
+
+
+
+C gtk.Tooltips
+a gobject.GObject
+a gtk.Object
+a gtk.Tooltips
+c gtk.Tooltips
+m enable
+m disable
+m set_tip
+p widget
+p tip_text
+p tip_private = None
+m force_window
+
+
+
+C gtk.Tooltip
+a gobject.GObject
+a gtk.Tooltip
+m set_custom
+p widget
+m set_icon
+p pixbuf
+m set_icon_from_icon_name
+p icon_name
+p size
+m set_icon_from_stock
+p stock_id
+p size
+m set_markup
+p markup
+m set_text
+p text
+
+
+
+C gtk.TreeIter
+m copy
+m free
+
+
+
+C gtk.TreeModelFilter
+a gobject.GObject
+a gtk.TreeModelFilter
+a gtk.TreeModel
+a gtk.TreeDragSource
+m set_visible_func
+p func
+p data = None
+m set_modify_func
+p types
+p func
+p data = None
+m set_visible_column
+p column
+m get_model
+m convert_child_iter_to_iter
+p child_iter
+m convert_iter_to_child_iter
+p filter_iter
+m convert_child_path_to_path
+p child_path
+m convert_path_to_child_path
+p filter_path
+m refilter
+m clear_cache
+
+
+
+C gtk.TreeModelSort
+a gobject.GObject
+a gtk.TreeModelSort
+a gtk.TreeModel
+a gtk.TreeSortable
+c gtk.TreeModelSort
+p child_model
+m get_model
+m convert_child_path_to_path
+p child_path
+m convert_child_iter_to_iter
+p sort_iter
+p child_iter
+m convert_path_to_child_path
+p sorted_path
+m convert_iter_to_child_iter
+p child_iter
+p sorted_iter
+m reset_default_sort_func
+m clear_cache
+m iter_is_valid
+p iter
+
+
+
+C gtk.TreeModel
+m get_flags
+m get_n_columns
+m get_column_type
+p index
+m get_iter
+p path
+m get_iter_from_string
+p path_string
+m get_string_from_iter
+p iter
+m get_iter_root
+m get_iter_first
+m get_path
+p iter
+m get_value
+p iter
+p column
+m iter_next
+p iter
+m iter_children
+p parent
+m iter_has_child
+p iter
+m iter_n_children
+p iter
+m iter_nth_child
+p parent
+p n
+m iter_parent
+p child
+m ref_node
+p iter
+m unref_node
+p iter
+m get
+p iter
+p column
+p ...
+m foreach
+p func
+p user_data
+m row_changed
+p path
+p iter
+m row_inserted
+p path
+p iter
+m row_has_child_toggled
+p path
+p iter
+m row_deleted
+p path
+m rows_reordered
+p path
+p iter
+p new_order
+m filter_new
+p root = None
+
+
+
+C gtk.TreeSelection
+a gobject.GObject
+a gtk.Object
+a gtk.TreeSelection
+m set_mode
+p type
+m get_mode
+m set_select_function
+p func
+p data = None
+p full = False
+m get_tree_view
+m get_selected
+m get_selected_rows
+m count_selected_rows
+m selected_foreach
+p func
+p data = None
+m select_path
+p path
+m unselect_path
+p path
+m select_iter
+p iter
+m unselect_iter
+p iter
+m path_is_selected
+p path
+m iter_is_selected
+p iter
+m select_all
+m unselect_all
+m select_range
+p start_path
+p end_path
+m unselect_range
+p start_path
+p end_path
+
+
+
+C gtk.TreeSortable
+m sort_column_changed
+m get_sort_column_id
+m set_sort_column_id
+p sort_column_id
+p order
+m set_sort_func
+p sort_column_id
+p sort_func
+p user_data = None
+m set_default_sort_func
+p sort_func
+p user_data = None
+m has_default_sort_func
+
+
+
+C gtk.TreeStore
+a gobject.GObject
+a gtk.TreeStore
+c gtk.TreeStore
+p ...
+m set_value
+p iter
+p column
+p value
+m set
+p iter
+p ...
+m remove
+p iter
+m insert
+p parent
+p position
+p row = None
+m insert_before
+p parent
+p sibling
+p row = None
+m insert_after
+p parent
+p sibling
+p row = None
+m prepend
+p parent
+p row = None
+m append
+p parent
+p row = None
+m is_ancestor
+p iter
+p descendant
+m iter_depth
+p iter
+m clear
+m iter_is_valid
+p iter
+m reorder
+p parent
+p new_order
+m swap
+p a
+p b
+m move_after
+p iter
+p position
+m move_before
+p iter
+p position
+
+
+
+C gtk.TreeViewColumn
+a gobject.GObject
+a gtk.Object
+a gtk.TreeViewColumn
+c gtk.TreeViewColumn
+p title = None
+p cell_renderer = None
+p ...
+m pack_start
+p cell
+p expand = True
+m pack_end
+p cell
+p expand = True
+m clear
+m get_cell_renderers
+m add_attribute
+p cell_renderer
+p attribute
+p column
+m set_attributes
+p cell_renderer
+p ...
+m set_cell_data_func
+p cell_renderer
+p func
+p func_data = None
+m clear_attributes
+p cell_renderer
+m set_spacing
+p spacing
+m get_spacing
+m set_visible
+p visible
+m get_visible
+m set_resizable
+p resizable
+m get_resizable
+m set_sizing
+p type
+m get_sizing
+m get_width
+m get_fixed_width
+m set_fixed_width
+p fixed_width
+m set_min_width
+p min_width
+m get_min_width
+m set_max_width
+p max_width
+m get_max_width
+m clicked
+m set_title
+p title
+m get_title
+m set_expand
+p expand
+m get_expand
+m set_clickable
+p active
+m get_clickable
+m set_widget
+p widget
+m get_widget
+m set_alignment
+p xalign
+m get_alignment
+m set_reorderable
+p reorderable
+m get_reorderable
+m set_sort_column_id
+p sort_column_id
+m get_sort_column_id
+m set_sort_indicator
+p setting
+m get_sort_indicator
+m set_sort_order
+p order
+m get_sort_order
+m cell_set_cell_data
+p tree_model
+p iter
+p is_expander
+p is_expanded
+m cell_get_size
+p cell_area = (0,0,0,0)
+m cell_is_visible
+m focus_cell
+p cell
+m cell_get_position
+p cell_renderer
+m queue_resize
+m get_tree_view
+
+
+
+C gtk.TreeView
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.TreeView
+c gtk.TreeView
+p model = None
+m get_model
+m set_model
+p model = None
+m get_selection
+m get_hadjustment
+m set_hadjustment
+p adjustment
+m get_vadjustment
+m set_vadjustment
+p adjustment
+m get_headers_visible
+m set_headers_visible
+p headers_visible
+m columns_autosize
+m set_headers_clickable
+p active
+m set_rules_hint
+p setting
+m get_rules_hint
+m append_column
+p column
+m remove_column
+p column
+m insert_column
+p column
+p position
+m insert_column_with_attributes
+p position
+p title
+p cell
+p ...
+m insert_column_with_data_func
+p position
+p title
+p cell
+p func
+p data = None
+m get_column
+p n
+m get_columns
+m move_column_after
+p column
+p base_column
+m set_expander_column
+p column
+m get_expander_column
+m set_column_drag_function
+p func
+p user_data
+m scroll_to_point
+p tree_x
+p tree_y
+m scroll_to_cell
+p path
+p column
+p use_align
+p row_align
+p col_align
+m row_activated
+p path
+p column
+m expand_all
+m collapse_all
+m expand_to_path
+p path
+m expand_row
+p path
+p open_all
+m collapse_row
+p path
+m map_expanded_rows
+p func
+p data
+m row_expanded
+p path
+m set_reorderable
+p reorderable
+m get_reorderable
+m set_cursor
+p path
+p focus_column = None
+p start_editing = False
+m set_cursor_on_cell
+p path
+p focus_column = None
+p focus_cell = None
+p start_editing = False
+m get_cursor
+m get_bin_window
+m get_path_at_pos
+p x
+p y
+m get_cell_area
+p path
+p column
+m get_background_area
+p path
+p column
+m get_visible_rect
+m widget_to_tree_coords
+p wx
+p wy
+m tree_to_widget_coords
+p tx
+p ty
+m enable_model_drag_source
+p start_button_mask
+p targets
+p actions
+m enable_model_drag_dest
+p targets
+p actions
+m unset_rows_drag_source
+m unset_rows_drag_dest
+m set_drag_dest_row
+p path
+p pos
+m get_drag_dest_row
+m get_dest_row_at_pos
+p x
+p y
+m create_row_drag_icon
+p path
+m set_enable_search
+p enable_search
+m get_enable_search
+m get_search_column
+m set_search_column
+p column
+m set_search_equal_func
+p func = None
+p user_data = None
+m get_fixed_height_mode
+m set_fixed_height_mode
+p enable
+m get_hover_selection
+m set_hover_selection
+p hover
+m get_hover_expand
+m set_hover_expand
+p expand
+m set_row_separator_func
+p func = None
+p user_data = None
+m get_visible_range
+m get_headers_clickable
+m get_search_entry
+m set_search_entry
+p entry = None
+m set_search_position_func
+p func
+p data = None
+m set_rubber_banding
+p enable
+m get_rubber_banding
+m get_grid_lines
+m set_grid_lines
+p grid_lines
+m get_enable_tree_lines
+m set_enable_tree_lines
+p enabled
+m convert_widget_to_bin_window_coords
+p widget_x
+p widget_y
+m convert_widget_to_tree_coords
+p widget_x
+p widget_y
+m convert_tree_to_widget_coords
+p tree_x
+p tree_y
+m convert_tree_to_bin_window_coords
+p tree_x
+p tree_y
+m convert_bin_window_to_widget_coords
+p window_x
+p window_y
+m convert_bin_window_to_tree_coords
+p window_x
+p window_y
+m get_level_indentation
+m set_level_indentation
+p indentation
+m get_show_expanders
+m set_show_expanders
+p enabled
+m get_tooltip_column
+m set_tooltip_column
+p column
+m is_rubber_banding_active
+m set_tooltip_cell
+p tooltip
+p path
+p column
+p cell
+m set_tooltip_row
+p tooltip
+p path
+
+
+
+C gtk.UIManager
+a gobject.GObject
+a gtk.UIManager
+c gtk.UIManager
+m set_add_tearoffs
+p add_tearoffs
+m get_add_tearoffs
+m insert_action_group
+p action_group
+p pos = -1
+m remove_action_group
+p action_group
+m get_action_groups
+m get_accel_group
+m get_widget
+p path
+m get_toplevels
+p types
+m get_action
+p path
+m add_ui_from_string
+p buffer
+m add_ui_from_file
+p filename
+m add_ui
+p merge_id
+p path
+p name
+p action
+p type
+p top
+m remove_ui
+p merge_id
+m get_ui
+m ensure_update
+m new_merge_id
+
+
+
+C gtk.VBox
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Box
+a gtk.VBox
+c gtk.VBox
+p homogeneous = False
+p spacing = 0
+
+
+
+C gtk.Viewport
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Viewport
+c gtk.Viewport
+p hadjustment = None
+p vadjustment = None
+m get_hadjustment
+m get_vadjustment
+m set_hadjustment
+p adjustment
+m set_vadjustment
+p adjustment
+m set_shadow_type
+p type
+m get_shadow_type
+
+
+
+C gtk.VPaned
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Paned
+a gtk.VPaned
+c gtk.VPaned
+
+
+
+C gtk.VRuler
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Ruler
+a gtk.VRuler
+c gtk.VRuler
+
+
+
+C gtk.VScale
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Range
+a gtk.Scale
+a gtk.VScale
+c gtk.VScale
+p adjustment = None
+
+
+
+C gtk.VScrollbar
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Range
+a gtk.Scrollbar
+a gtk.VScrollbar
+c gtk.VScrollbar
+p adjustment = None
+
+
+
+C gtk.VSeparator
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Separator
+a gtk.VSeparator
+c gtk.VSeparator
+
+
+
+C gtk.Widget
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+m get_allocation
+m drag_check_threshold
+p start_x
+p start_y
+p current_x
+p current_y
+m drag_get_data
+p context
+p target
+p time = 0L
+m drag_highlight
+m drag_unhighlight
+m drag_dest_set
+p flags
+p targets
+p actions
+m drag_dest_set_proxy
+p proxy_window
+p protocol
+p use_coordinates
+m drag_dest_unset
+m drag_dest_find_target
+p context
+p target_list
+m drag_dest_get_target_list
+m drag_dest_set_target_list
+p target_list
+m drag_dest_add_image_targets
+m drag_dest_add_text_targets
+m drag_dest_add_uri_targets
+m drag_source_set
+p start_button_mask
+p targets
+p actions
+m drag_source_unset
+m drag_source_set_icon
+p colormap
+p pixmap
+p mask
+m drag_source_set_icon_pixbuf
+p pixbuf
+m drag_source_set_icon_stock
+p stock_id
+m drag_source_set_icon_name
+p icon_name
+m drag_source_add_text_targets
+m drag_source_add_image_targets
+m drag_source_add_uri_targets
+m drag_begin
+p targets
+p actions
+p button
+p event
+m grab_add
+m grab_remove
+m rc_get_style
+m selection_owner_set
+p selection
+p time = 0L
+m selection_add_target
+p selection
+p target
+p info
+m selection_add_targets
+p selection
+p targets
+m selection_clear_targets
+p selection
+m selection_convert
+p selection
+p target
+p time = 0L
+m selection_remove_all
+m destroy
+m unparent
+m show
+m show_now
+m hide
+m show_all
+m hide_all
+m set_no_show_all
+p no_show_all
+m get_no_show_all
+m map
+m unmap
+m realize
+m unrealize
+m queue_draw
+m queue_draw_area
+p x
+p y
+p width
+p height
+m queue_resize
+m queue_resize_no_redraw
+m size_request
+m size_allocate
+p allocation
+m get_child_requisition
+m add_accelerator
+p accel_signal
+p accel_group
+p accel_key
+p accel_mods
+p accel_flags
+m remove_accelerator
+p accel_group
+p accel_key
+p accel_mods
+m set_accel_path
+p accel_path
+p accel_group
+m can_activate_accel
+p signal_id
+m mnemonic_activate
+p group_cycling
+m event
+p event
+m send_expose
+p event
+m activate
+m set_scroll_adjustments
+p hadjustment
+p vadjustment
+m reparent
+p new_parent
+m intersect
+p area
+m region_intersect
+p region
+m freeze_child_notify
+m child_notify
+p child_property
+m thaw_child_notify
+m is_focus
+m grab_focus
+m grab_default
+m set_name
+p name
+m get_name
+m set_state
+p state
+m set_sensitive
+p sensitive
+m set_app_paintable
+p app_paintable
+m set_double_buffered
+p double_buffered
+m set_redraw_on_allocate
+p redraw_on_allocate
+m set_parent
+p parent
+m set_parent_window
+p parent_window
+m set_child_visible
+p is_visible
+m get_child_visible
+m get_parent
+m get_parent_window
+m child_focus
+p direction
+m set_size_request
+p width
+p height
+m get_size_request
+m set_events
+p events
+m add_events
+p events
+m set_extension_events
+p mode
+m get_extension_events
+m get_toplevel
+m get_ancestor
+p widget_type
+m get_colormap
+m get_visual
+m get_screen
+m has_screen
+m get_display
+m get_root_window
+m get_settings
+m get_clipboard
+p selection
+m get_accessible
+m set_colormap
+p colormap
+m get_events
+m get_pointer
+m is_ancestor
+p ancestor
+m translate_coordinates
+p dest_widget
+p src_x
+p src_y
+m hide_on_delete
+m set_style
+p style
+m ensure_style
+m get_style
+m modify_style
+p style
+m get_modifier_style
+m modify_fg
+p state
+p color
+m modify_bg
+p state
+p color
+m modify_text
+p state
+p color
+m modify_base
+p state
+p color
+m modify_font
+p font_desc
+m create_pango_context
+m get_pango_context
+m create_pango_layout
+p text
+m render_icon
+p stock_id
+p size
+p detail = None
+m set_composite_name
+p name
+m get_composite_name
+m reset_rc_styles
+m style_get_property
+p property_name
+m set_direction
+p dir
+m get_direction
+m shape_combine_mask
+p shape_mask
+p offset_x
+p offset_y
+m reset_shapes
+m path
+m class_path
+m list_mnemonic_labels
+m add_mnemonic_label
+p label
+m remove_mnemonic_label
+p label
+m menu_get_for_attach_widget
+m set_activate_signal
+p signal_name
+m set_set_scroll_adjustments_signal
+p signal_name
+m get_action
+m drag_dest_set_track_motion
+p track_motion
+m drag_dest_get_track_motion
+m is_composited
+m input_shape_combine_mask
+p shape_mask
+p offset_x
+p offset_y
+m get_activate_signal
+m error_bell
+m get_has_tooltip
+m get_tooltip_markup
+m get_tooltip_text
+m get_tooltip_window
+m keynav_failed
+p direction
+m modify_cursor
+p primary
+p secondary
+m set_has_tooltip
+p has_tooltip
+m set_tooltip_markup
+p markup
+m set_tooltip_text
+p text
+m set_tooltip_window
+p window
+m trigger_tooltip_query
+m get_snapshot
+p clip_rect
+m get_window
+
+
+
+C gtk.Window
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Window
+c gtk.Window
+p type = gtk.WINDOW_TOPLEVEL
+m set_title
+p title
+m get_title
+m set_wmclass
+p wmclass_name
+p wmclass_class
+m set_role
+p role
+m get_role
+m add_accel_group
+p accel_group
+m remove_accel_group
+p accel_group
+m set_position
+p position
+m activate_focus
+m set_focus
+p focus
+m get_focus
+m set_default
+p default_widget
+m activate_default
+m set_transient_for
+p parent
+m get_transient_for
+m set_type_hint
+p hint
+m get_type_hint
+m set_destroy_with_parent
+p setting
+m get_destroy_with_parent
+m set_resizable
+p resizable
+m get_resizable
+m set_gravity
+p gravity
+m get_gravity
+m set_geometry_hints
+p geometry_widget
+p min_width = -1
+p min_height = -1
+p max_width = -1
+p max_height = -1
+p base_width = -1
+p base_height = -1
+p width_inc = -1
+p height_inc = -1
+p min_aspect = -1.0
+p max_aspect = -1.0
+m set_screen
+p screen
+m get_screen
+m is_active
+m has_toplevel_focus
+m set_has_frame
+p setting
+m get_has_frame
+m set_frame_dimensions
+p left
+p top
+p right
+p bottom
+m get_frame_dimensions
+m set_decorated
+p setting
+m get_decorated
+m set_icon_list
+p ...
+m get_icon_list
+m set_icon
+p icon
+m set_icon_from_file
+p filename
+m get_icon
+m set_modal
+p modal
+m get_modal
+m add_mnemonic
+p keyval
+p target
+m remove_mnemonic
+p keyval
+p target
+m mnemonic_activate
+p keyval
+p modifier
+m set_mnemonic_modifier
+p modifier
+m get_mnemonic_modifier
+m activate_key
+p event
+m propagate_key_event
+p event
+m present
+m iconify
+m deiconify
+m stick
+m unstick
+m maximize
+m unmaximize
+m fullscreen
+m unfullscreen
+m set_keep_above
+p setting
+m set_keep_below
+p setting
+m begin_resize_drag
+p edge
+p button
+p root_x
+p root_y
+p timestamp
+m begin_move_drag
+p button
+p root_x
+p root_y
+p timestamp
+m set_default_size
+p width
+p height
+m get_default_size
+m resize
+p width
+p height
+m get_size
+m move
+p x
+p y
+m get_position
+m parse_geometry
+p geometry
+m reshow_with_initial_size
+m tooltips_get_info_from_tip_window
+m set_focus_on_map
+p setting
+m get_focus_on_map
+m set_icon_name
+p name
+m get_icon_name
+m set_urgency_hint
+p urgency_hint
+m get_urgency_hint
+m present_with_time
+p timestamp
+m set_deletable
+p setting
+m get_deletable
+m get_group
+m set_opacity
+p opacity
+m get_opacity
+m set_startup_id
+p startup_id
+m get_default_widget
+
+
+
+C pango.FontDescription
+c pango.FontDescription
+p str = None
+m copy
+m copy_static
+m hash
+m set_family
+p family
+m set_family_static
+p family
+m get_family
+m set_style
+p style
+m get_style
+m set_variant
+p variant
+m get_variant
+m set_weight
+p weight
+m get_weight
+m set_stretch
+p stretch
+m get_stretch
+m set_size
+p size
+m get_size
+m get_set_fields
+m unset_fields
+p to_unset
+m merge
+p desc_to_merge
+p replace_existing
+m merge_static
+p desc_to_merge
+p replace_existing
+m better_match
+p old_match
+p new_match
+m to_string
+m to_filename
+m set_absolute_size
+p size
+m get_size_is_absolute
+
+
+
+
+
+C gtk.Container
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+m set_border_width
+p border_width
+m get_border_width
+m add
+p widget
+m remove
+p widget
+m set_resize_mode
+p resize_mode
+m get_resize_mode
+m check_resize
+m forall
+p callback
+p callback_data
+m foreach
+p callback
+p callback_data
+m get_children
+m propagate_expose
+p child
+p event
+m set_focus_chain
+p focusable_widgets
+m get_focus_chain
+m unset_focus_chain
+m set_reallocate_redraws
+p needs_redraws
+m set_focus_child
+p child
+m get_focus_child
+m set_focus_vadjustment
+p adjustment
+m get_focus_vadjustment
+m set_focus_hadjustment
+p adjustment
+m get_focus_hadjustment
+m resize_children
+m child_type
+m add_with_properties
+p widget
+p first_prop_name
+p first_prop_value
+p ...
+m child_set
+p child
+p first_prop_name
+p first_prop_value
+p ...
+m child_get
+p child
+p first_prop_name
+p ...
+m child_set_property
+p child
+p property_name
+p value
+m child_get_property
+p child
+p property_name
+
+
+
+
+
+C gtk.AspectFrame
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Frame
+a gtk.AspectFrame
+c gtk.AspectFrame
+p label = None
+p xalign = 0.5
+p yalign = 0.5
+p ratio = 1.0
+p obey_child = True
+m set
+p xalign = 0.0
+p yalign = 0.0
+p ratio = 1.0
+p obey_child = True
+
+
+
+C gtk.ColorButton
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Button
+a gtk.ColorButton
+c gtk.ColorButton
+p color = gtk.gdk.Color(0,0,0)
+m set_color
+p color
+m get_color
+m set_alpha
+p alpha
+m get_alpha
+m set_use_alpha
+p use_alpha
+m get_use_alpha
+m set_title
+p title
+m get_title
+
+
+
+C gtk.IconView
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.IconView
+a gtk.CellLayout
+c gtk.IconView
+p model = None
+m set_model
+p model = None
+m get_model
+m set_text_column
+p column
+m get_text_column
+m set_markup_column
+p column
+m get_markup_column
+m set_pixbuf_column
+p column
+m get_pixbuf_column
+m get_path_at_pos
+p x
+p y
+m get_item_at_pos
+p x
+p y
+m set_cursor
+p path
+p cell = None
+p start_editing = False
+m get_cursor
+m selected_foreach
+p func
+p data
+m set_selection_mode
+p mode
+m get_selection_mode
+m set_orientation
+p orientation
+m get_orientation
+m set_columns
+p columns
+m get_columns
+m set_item_width
+p item_width
+m get_item_width
+m set_spacing
+p spacing
+m get_spacing
+m set_row_spacing
+p row_spacing
+m get_row_spacing
+m set_column_spacing
+p column_spacing
+m get_column_spacing
+m set_margin
+p margin
+m get_margin
+m select_path
+p path
+m unselect_path
+p path
+m path_is_selected
+p path
+m get_selected_items
+m select_all
+m unselect_all
+m item_activated
+p path
+m scroll_to_path
+p path
+p use_align
+p row_align
+p col_align
+m get_visible_range
+m enable_model_drag_source
+p start_button_mask
+p targets
+p actons
+m enable_model_drag_dest
+p targets
+p actions
+m unset_model_drag_source
+m unset_model_drag_dest
+m set_reorderable
+p reorderable
+m get_reorderable
+m set_drag_dest_item
+p path
+p pos
+m get_drag_dest_item
+m get_dest_item_at_pos
+p drag_x
+p drag_y
+m create_drag_icon
+p path
+m convert_widget_to_bin_window_coords
+p widget_x
+p widget_y
+m set_tooltip_cell
+p tooltip
+p path
+p cell
+m set_tooltip_column
+p column
+m get_tooltip_column
+m set_tooltip_item
+p tooltip
+p path
