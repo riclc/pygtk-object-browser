@@ -5318,3 +5318,17 @@ m get_tooltip_column
 m set_tooltip_item
 p tooltip
 p path
+
+C gtk.Misc
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Misc
+m set_alignment
+p xalign
+p yalign
+m get_alignment
+m set_padding
+p xpad
+p ypad
+m get_padding
