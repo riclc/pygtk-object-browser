@@ -25,6 +25,7 @@
   <object class="GtkWindow" id="window">
     <property name="title" translatable="yes">PyGTK Object Browser</property>
     <property name="window_position">center</property>
+    <property name="icon">icon.png</property>
     <child>
       <object class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
