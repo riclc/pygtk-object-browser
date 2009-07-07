@@ -24,6 +24,7 @@
 
 
 import gtk
+import gobject
 import pango
 import inspect
 import os
@@ -39,7 +40,14 @@ imagens_classe = ( \
     'method_special', \
     'method_get_set', \
     'method_constructor', \
-    'estrela' \
+    'estrela', \
+    'signal_default', \
+    'prop_default', \
+    'prop_int', \
+    'prop_bool', \
+    'prop_string', \
+    'prop_float', \
+    'prop_color' \
 )
 
 
@@ -136,25 +144,32 @@ def on_select_obj(*args):
 
     fill_membros( obj )
     fill_hierarquia( obj )
+    fill_props( obj )
+    fill_signals( obj )
 
+
+
+def get_class_from_obj(obj):
+    if "gtk.gdk." in obj:
+        obj_nome = obj[ len("gtk.gdk.") : ]
+        modulo = gtk.gdk
+    elif "gtk." in obj:
+        obj_nome = obj[ len("gtk.") : ]
+        modulo = gtk
+    else:
+        return None, ""
+
+    classe = getattr( modulo, obj_nome )
+    return classe, obj_nome
 
 
 def fill_membros(obj):
     global storeMembros, imgs2, textDoc, db
     storeMembros.clear()
 
-    obj_nome = obj
-
-    if "gtk.gdk." in obj_nome:
-        obj_nome = obj_nome[ len("gtk.gdk.") : ]
-        modulo = gtk.gdk
-    elif "gtk." in obj_nome:
-        obj_nome = obj_nome[ len("gtk.") : ]
-        modulo = gtk
-    else:
+    classe, obj_nome = get_class_from_obj( obj )
+    if obj_nome == "":
         return
-
-    classe = getattr( modulo, obj_nome )
 
     obj_doc = getattr(classe, "__doc__")
     if obj_doc != None:
@@ -247,6 +262,63 @@ def fill_hierarquia(obj):
         b.show()
         areaClasses.add( b )
 
+
+def fill_props(obj):
+    global storeProps
+
+    storeProps.clear()
+    classe, nome = get_class_from_obj( obj )
+
+    props = gobject.list_properties( classe )
+    for prop in props:
+        pname = prop.name
+        ptipo = prop.value_type.name
+        pdefault = str( prop.default_value )
+        pdesc = prop.blurb
+
+        if ptipo == 'gint' or ptipo == 'guint':
+            img = imgs2['prop_int']
+        elif ptipo == 'gboolean':
+            img = imgs2['prop_bool']
+        elif ptipo == 'gchararray':
+            img = imgs2['prop_string']
+        elif ptipo == 'gfloat':
+            img = imgs2['prop_float']
+        elif ptipo == 'GdkColor':
+            img = imgs2['prop_color']
+        else:
+            img = imgs2['prop_default']
+
+        storeProps.append( [img, pname, ptipo, pdefault, pdesc] )
+
+
+def fill_signals(obj):
+    global storeSignals
+
+    storeSignals.clear()
+    classe, nome = get_class_from_obj( obj )
+
+    sigs = gobject.signal_list_names( classe )
+    for sig in sigs:
+        details = gobject.signal_query( sig, classe )
+        sig_id = details[0]
+        sig_ret = details[4].name
+
+        sig_params = details[5]
+        if len(sig_params) > 0:
+
+            sparams = []
+            for sig_param in sig_params:
+                sparams.append( sig_param.name )
+
+            s_sig_params = ", ".join( sparams )
+        else:
+            s_sig_params = "<None>"
+
+        img = imgs2['signal_default']
+        storeSignals.append( [img, sig, sig_id, sig_ret, s_sig_params] )
+
+
 def on_janela_destroy(sender, event):
     gtk.main_quit()
 
@@ -311,8 +383,16 @@ builder.add_from_file( "PyGtkObjectBrowser.glade" )
 janela = builder.get_object( "window" )
 listaObjetos = builder.get_object( "listaObjetos" )
 storeObjetos = builder.get_object( "storeObjetos")
+
 listaMembros = builder.get_object( "listaMembros" )
 storeMembros = builder.get_object( "storeMembros")
+
+listProps = builder.get_object( "listProps" )
+storeProps = builder.get_object( "storeProps" )
+
+listSignals = builder.get_object( "listSignals" )
+storeSignals = builder.get_object( "storeSignals" )
+
 textDoc = builder.get_object( "textDoc")
 areaClasses = builder.get_object( "areaClasses" )
 
@@ -324,7 +404,6 @@ janela.connect( "delete-event", on_janela_destroy )
 janela.show()
 
 listaObjetos.append_column( new_coluna("9", text_src=1, img_src=0) )
-listaObjetos.set_rules_hint( True )
 listaObjetos.connect( "cursor-changed", on_select_obj )
 
 storeMembros.set_sort_func( 0, sort_func_metodo_estrela )
@@ -336,7 +415,17 @@ listaMembros.append_column( new_coluna( fonte = "Monospace 9", \
 listaMembros.append_column( new_coluna( fonte = "8", \
     text_src=3, cor_texto="#979797", resize=True, title="Type") )
 
-listaMembros.set_rules_hint( True )
+listProps.append_column( new_coluna("", img_src=0) )
+listProps.append_column( new_coluna(title="Name", text_src=1) )
+listProps.append_column( new_coluna(title="Type", text_src=2) )
+listProps.append_column( new_coluna(title="Default", text_src=3) )
+listProps.append_column( new_coluna(title="Desc.", text_src=4) )
+
+listSignals.append_column( new_coluna("", img_src=0) )
+listSignals.append_column( new_coluna(title="Name", text_src=1) )
+listSignals.append_column( new_coluna(title="ID", text_src=2) )
+listSignals.append_column( new_coluna(title="Returns", text_src=3) )
+listSignals.append_column( new_coluna(title="Params", text_src=4) )
 
 carregaObjetos()
 carregaImagens()
