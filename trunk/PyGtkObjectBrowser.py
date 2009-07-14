@@ -29,6 +29,7 @@ import pango
 import inspect
 import os
 import os.path
+import cairo
 
 imagens_classe = ( \
     'default', \
@@ -153,6 +154,9 @@ def get_class_from_obj(obj):
     if "gtk.gdk." in obj:
         obj_nome = obj[ len("gtk.gdk.") : ]
         modulo = gtk.gdk
+    elif "gobject." in obj:
+        obj_nome = obj[ len("gobject.") : ]
+        modulo = gobject
     elif "gtk." in obj:
         obj_nome = obj[ len("gtk.") : ]
         modulo = gtk
@@ -257,9 +261,17 @@ def fill_hierarquia(obj):
         print( "Did not find: " + anc)
 
     for anc in db_anc[obj]:
-        b = gtk.Button( anc )
+        hb = gtk.HBox()
+        hb.add( gtk.image_new_from_pixbuf( imgs[anc] ) )
+        hb.add( gtk.Label(anc) )
+        hb.set_spacing( 2 )
+        hb.show_all()
+
+        b = gtk.Button()
         b.connect( "clicked", find_obj, anc )
+        b.add( hb )
         b.show()
+
         areaClasses.add( b )
 
 
@@ -376,6 +388,31 @@ def sort_func_metodo_nome(model, iter1, iter2):
         return +1
 
 
+def on_classes_expose(widget, event):
+    widget = widget.get_child()
+    w = widget.get_allocation().width
+    h = widget.get_allocation().height
+
+#    gc = event.window.new_gc()
+#    gc.set_rgb_fg_color( gtk.gdk.color_parse("#69b8d3") )
+#    event.window.draw_rectangle( gc, filled = False, \
+#        x=0, y=0, width = w-7, height = h-7 )
+
+    cr = event.window.cairo_create()
+
+    grad = cairo.LinearGradient( 0, h/2, 0, h-1 )
+    grad.add_color_stop_rgba( 0.0,   0.3, 0.4, 0.5, 0.0 )
+    grad.add_color_stop_rgba( 1.0,   0.1, 0.5, 0.6, 0.5 )
+
+    cr.set_source( grad )
+    cr.rectangle( 0, 0, w-1, h-1 )
+    cr.fill()
+
+    return False
+
+
+
+
 
 builder = gtk.Builder()
 builder.add_from_file( "PyGtkObjectBrowser.glade" )
@@ -395,6 +432,12 @@ storeSignals = builder.get_object( "storeSignals" )
 
 textDoc = builder.get_object( "textDoc")
 areaClasses = builder.get_object( "areaClasses" )
+
+viewClasses = builder.get_object("viewClasses")
+viewClasses.connect_after( "expose_event", on_classes_expose )
+cl_classes = gtk.gdk.color_parse( "#c8dbe1" )
+viewClasses.modify_bg( gtk.STATE_NORMAL, cl_classes )
+
 
 cl_hint = gtk.gdk.color_parse( "#fdffca" )
 textDoc.modify_base( gtk.STATE_NORMAL, cl_hint )
