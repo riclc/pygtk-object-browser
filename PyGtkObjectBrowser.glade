@@ -53,6 +53,8 @@
   <object class="GtkWindow" id="window">
     <property name="title" translatable="yes">PyGTK Object Browser</property>
     <property name="window_position">center</property>
+    <property name="default_width">500</property>
+    <property name="default_height">400</property>
     <property name="icon">icon.png</property>
     <child>
       <object class="GtkVBox" id="vbox1">
@@ -82,7 +84,7 @@
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="label" translatable="yes">&lt;big&gt;&lt;b&gt;PyGTK Object Browser&lt;/b&gt;&lt;/big&gt;
-&lt;small&gt;Version 0.9.7&lt;/small&gt;
+&lt;small&gt;Version 0.9.8&lt;/small&gt;
 &lt;small&gt;&lt;small&gt;Copyright &#xA9; 2009 Ricardo Lenz&lt;/small&gt;&lt;/small&gt;</property>
                 <property name="use_markup">True</property>
               </object>
@@ -101,6 +103,8 @@
           <object class="GtkHPaned" id="hpaned1">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="position">200</property>
+            <property name="position_set">True</property>
             <child>
               <object class="GtkVBox" id="vbox2">
                 <property name="visible">True</property>
@@ -126,8 +130,7 @@
                     <property name="shadow_type">etched-out</property>
                     <child>
                       <object class="GtkTreeView" id="listaObjetos">
-                        <property name="width_request">230</property>
-                        <property name="height_request">230</property>
+                        <property name="width_request">200</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="model">storeObjetos</property>
@@ -148,34 +151,25 @@
               </packing>
             </child>
             <child>
-              <object class="GtkVPaned" id="vpaned1">
+              <object class="GtkVBox" id="vbox3">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="border_width">3</property>
                 <property name="orientation">vertical</property>
+                <property name="spacing">6</property>
                 <child>
-                  <object class="GtkVBox" id="vbox3">
+                  <object class="GtkNotebook" id="notebook">
                     <property name="visible">True</property>
-                    <property name="border_width">3</property>
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">4</property>
+                    <property name="can_focus">True</property>
+                    <property name="tab_border">3</property>
+                    <property name="tab_hborder">9</property>
+                    <property name="tab_vborder">3</property>
                     <child>
-                      <object class="GtkLabel" id="label4">
-                        <property name="visible">True</property>
-                        <property name="xalign">0</property>
-                        <property name="label" translatable="yes">Members:</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="padding">4</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkScrolledWindow" id="scrolledwindow2">
+                      <object class="GtkScrolledWindow" id="scrollMembros">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="border_width">7</property>
                         <property name="hscrollbar_policy">automatic</property>
-                        <property name="shadow_type">etched-out</property>
+                        <property name="shadow_type">in</property>
                         <child>
                           <object class="GtkTreeView" id="listaMembros">
                             <property name="width_request">200</property>
@@ -188,57 +182,18 @@
                           </object>
                         </child>
                       </object>
-                      <packing>
-                        <property name="position">1</property>
-                      </packing>
                     </child>
-                    <child>
-                      <object class="GtkHBox" id="hbox2">
+                    <child type="tab">
+                      <object class="GtkLabel" id="label7">
                         <property name="visible">True</property>
-                        <property name="spacing">6</property>
-                        <child>
-                          <object class="GtkLabel" id="label5">
-                            <property name="visible">True</property>
-                            <property name="label" translatable="yes">Ancestry:</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkHBox" id="areaClasses">
-                            <property name="visible">True</property>
-                            <property name="spacing">6</property>
-                            <child>
-                              <placeholder/>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
+                        <property name="label" translatable="yes">Members</property>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
-                        <property name="position">2</property>
+                        <property name="tab_fill">False</property>
                       </packing>
                     </child>
-                  </object>
-                  <packing>
-                    <property name="resize">True</property>
-                    <property name="shrink">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkNotebook" id="notebook">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="tab_border">3</property>
-                    <property name="tab_hborder">9</property>
                     <child>
-                      <object class="GtkScrolledWindow" id="scrolledwindow3">
+                      <object class="GtkScrolledWindow" id="scrollProps">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="border_width">7</property>
@@ -254,6 +209,9 @@
                           </object>
                         </child>
                       </object>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
                     </child>
                     <child type="tab">
                       <object class="GtkLabel" id="label2">
@@ -261,11 +219,12 @@
                         <property name="label" translatable="yes">Properties</property>
                       </object>
                       <packing>
+                        <property name="position">2</property>
                         <property name="tab_fill">False</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkScrolledWindow" id="scrolledwindow4">
+                      <object class="GtkScrolledWindow" id="scrollSignals">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="border_width">7</property>
@@ -281,7 +240,7 @@
                         </child>
                       </object>
                       <packing>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                     <child type="tab">
@@ -290,12 +249,12 @@
                         <property name="label" translatable="yes">Signals</property>
                       </object>
                       <packing>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                         <property name="tab_fill">False</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkViewport" id="viewport1">
+                      <object class="GtkViewport" id="viewportDoc">
                         <property name="visible">True</property>
                         <property name="border_width">7</property>
                         <property name="resize_mode">queue</property>
@@ -312,23 +271,84 @@
                         </child>
                       </object>
                       <packing>
-                        <property name="position">2</property>
+                        <property name="position">3</property>
                       </packing>
                     </child>
                     <child type="tab">
-                      <object class="GtkLabel" id="label7">
+                      <object class="GtkLabel" id="label8">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">Documentation</property>
                       </object>
                       <packing>
-                        <property name="position">2</property>
+                        <property name="position">3</property>
                         <property name="tab_fill">False</property>
                       </packing>
                     </child>
                   </object>
                   <packing>
-                    <property name="resize">True</property>
-                    <property name="shrink">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow" id="scrolledwindow2">
+                    <property name="height_request">70</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="vscrollbar_policy">never</property>
+                    <child>
+                      <object class="GtkViewport" id="viewport1">
+                        <property name="visible">True</property>
+                        <property name="border_width">4</property>
+                        <property name="resize_mode">queue</property>
+                        <property name="shadow_type">none</property>
+                        <child>
+                          <object class="GtkEventBox" id="viewClasses">
+                            <property name="visible">True</property>
+                            <property name="border_width">3</property>
+                            <child>
+                              <object class="GtkHBox" id="hbClasses">
+                                <property name="visible">True</property>
+                                <property name="spacing">6</property>
+                                <child>
+                                  <object class="GtkLabel" id="label5">
+                                    <property name="visible">True</property>
+                                    <property name="xpad">4</property>
+                                    <property name="label" translatable="yes">Ancestry:</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkHBox" id="areaClasses">
+                                    <property name="visible">True</property>
+                                    <property name="border_width">2</property>
+                                    <property name="spacing">5</property>
+                                    <child>
+                                      <placeholder/>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">False</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">1</property>
                   </packing>
                 </child>
               </object>
