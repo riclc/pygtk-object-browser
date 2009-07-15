@@ -24,6 +24,7 @@
 
 
 import gtk
+import atk
 import gobject
 import pango
 import inspect
@@ -144,7 +145,8 @@ def on_select_obj(*args):
     obj = storeObjetos.get_value( it, 1 )
 
     fill_membros( obj )
-    fill_hierarquia( obj )
+    fill_ancestry( obj )
+    fill_interfaces( obj )
     fill_props( obj )
     fill_signals( obj )
 
@@ -160,6 +162,12 @@ def get_class_from_obj(obj):
     elif "gtk." in obj:
         obj_nome = obj[ len("gtk.") : ]
         modulo = gtk
+    elif "atk." in obj:
+        obj_nome = obj[ len("atk.") : ]
+        modulo = atk
+
+        if obj_nome == 'Implementor':
+            obj_nome = 'ImplementorIface'
     else:
         return None, ""
 
@@ -240,27 +248,61 @@ def fill_membros(obj):
         storeMembros.append( [estrela, img, d, dtype] )
 
 
-def fill_hierarquia(obj):
+
+def on_ancestry_button_click(sender, ancestry_class):
+    global storeObjetos, listaObjetos
+
+    index = 0
+    it = storeObjetos.get_iter_first()
+
+    while it != None:
+        classe = storeObjetos.get_value( it, 1 )
+        if classe == ancestry_class:
+            listaObjetos.set_cursor( (index,) )
+            return
+
+        it = storeObjetos.iter_next( it )
+        index += 1
+
+    print( "Did not find: " + ancestry_class)
+
+
+def fill_ancestry(obj):
     global db_anc, areaClasses, storeObjetos, listaObjetos
 
     areaClasses.foreach( lambda btn: areaClasses.remove(btn) )
 
-    def find_obj(sender, anc):
+    ancs = []
+    tobj, obj_name = get_class_from_obj(obj)
+    while True:
+        try:
+            anc = gobject.type_parent( tobj )
+        except:
+            anc = None
 
-        index = 0
-        it = storeObjetos.get_iter_first()
-        while it != None:
-            classe = storeObjetos.get_value( it, 1 )
-            if classe == anc:
-                listaObjetos.set_cursor( (index,) )
-                return
+        if anc == None:
+            break
+        else:
+            tobj = anc.pytype
 
-            it = storeObjetos.iter_next( it )
-            index += 1
+            if tobj == None:
+                continue
 
-        print( "Did not find: " + anc)
+            if anc.name == 'GInitiallyUnowned':
+                continue
 
-    for anc in db_anc[obj]:
+            if tobj.__name__ == 'GObject':
+                tobj_str = "gobject.GObject"
+            else:
+                tobj_str = tobj.__module__ + '.' + tobj.__name__
+
+            ancs.append( tobj_str )
+
+    ancs.reverse()
+    ancs.append( obj )
+
+    #for anc in db_anc[obj]:
+    for anc in ancs:
         hb = gtk.HBox()
         hb.add( gtk.image_new_from_pixbuf( imgs[anc] ) )
         hb.add( gtk.Label(anc) )
@@ -268,11 +310,52 @@ def fill_hierarquia(obj):
         hb.show_all()
 
         b = gtk.Button()
-        b.connect( "clicked", find_obj, anc )
+        b.connect( "clicked", on_ancestry_button_click, anc )
         b.add( hb )
         b.show()
 
         areaClasses.add( b )
+
+
+
+def fill_interfaces(obj):
+    global areaInterfaces, storeObjetos, listaObjetos
+
+    areaInterfaces.foreach( lambda btn: areaInterfaces.remove(btn) )
+
+    tobj, obj_name = get_class_from_obj(obj)
+
+    try:
+        interfaces = gobject.type_interfaces( tobj )
+    except:
+        interfaces = []
+
+    for interface in interfaces:
+        iname = interface.name
+
+        if iname[:3] == "Gtk":
+            iname = "gtk." + iname[3:]
+        elif iname[:3] == "Atk":
+            iname = "atk." + iname[3:]
+
+            if iname == 'atk.ImplementorIface':
+                iname = 'atk.Implementor'
+        else:
+            continue
+
+        hb = gtk.HBox()
+        hb.add( gtk.image_new_from_pixbuf( imgs[iname] ) )
+        hb.add( gtk.Label(iname) )
+        hb.set_spacing( 2 )
+        hb.show_all()
+
+        b = gtk.Button()
+        b.connect( "clicked", on_ancestry_button_click, iname )
+        b.add( hb )
+        b.show()
+
+        areaInterfaces.add( b )
+
 
 
 def fill_props(obj):
@@ -281,7 +364,11 @@ def fill_props(obj):
     storeProps.clear()
     classe, nome = get_class_from_obj( obj )
 
-    props = gobject.list_properties( classe )
+    try:
+        props = gobject.list_properties( classe )
+    except:
+        props = []
+
     for prop in props:
         pname = prop.name
         ptipo = prop.value_type.name
@@ -310,7 +397,11 @@ def fill_signals(obj):
     storeSignals.clear()
     classe, nome = get_class_from_obj( obj )
 
-    sigs = gobject.signal_list_names( classe )
+    try:
+        sigs = gobject.signal_list_names( classe )
+    except:
+        sigs = []
+
     for sig in sigs:
         details = gobject.signal_query( sig, classe )
         sig_id = details[0]
@@ -388,7 +479,7 @@ def sort_func_metodo_nome(model, iter1, iter2):
         return +1
 
 
-def on_classes_expose(widget, event):
+def on_classes_expose(widget, event, tip):
     widget = widget.get_child()
     w = widget.get_allocation().width
     h = widget.get_allocation().height
@@ -401,8 +492,13 @@ def on_classes_expose(widget, event):
     cr = event.window.cairo_create()
 
     grad = cairo.LinearGradient( 0, h/2, 0, h-1 )
-    grad.add_color_stop_rgba( 0.0,   0.3, 0.4, 0.5, 0.0 )
-    grad.add_color_stop_rgba( 1.0,   0.1, 0.5, 0.6, 0.5 )
+
+    if tip == 'classes':
+        grad.add_color_stop_rgba( 0.0,   0.3, 0.4, 0.5, 0.0 )
+        grad.add_color_stop_rgba( 1.0,   0.1, 0.5, 0.6, 0.5 )
+    else:
+        grad.add_color_stop_rgba( 0.0,   0.5, 0.4, 0.3, 0.0 )
+        grad.add_color_stop_rgba( 1.0,   0.6, 0.5, 0.1, 0.5 )
 
     cr.set_source( grad )
     cr.rectangle( 0, 0, w-1, h-1 )
@@ -431,17 +527,25 @@ listSignals = builder.get_object( "listSignals" )
 storeSignals = builder.get_object( "storeSignals" )
 
 textDoc = builder.get_object( "textDoc")
+
 areaClasses = builder.get_object( "areaClasses" )
-
 viewClasses = builder.get_object("viewClasses")
-viewClasses.connect_after( "expose_event", on_classes_expose )
-cl_classes = gtk.gdk.color_parse( "#c8dbe1" )
-viewClasses.modify_bg( gtk.STATE_NORMAL, cl_classes )
 
+areaInterfaces = builder.get_object( "areaInterfaces" )
+viewInterfaces = builder.get_object("viewInterfaces")
 
 cl_hint = gtk.gdk.color_parse( "#fdffca" )
 textDoc.modify_base( gtk.STATE_NORMAL, cl_hint )
 textDoc.modify_font( pango.FontDescription("Tahoma 8") )
+
+viewClasses.connect_after( "expose_event", on_classes_expose, "classes" )
+cl_classes = gtk.gdk.color_parse( "#c8dbe1" )
+viewClasses.modify_bg( gtk.STATE_NORMAL, cl_classes )
+
+viewInterfaces.connect_after( "expose_event", on_classes_expose, "interfaces" )
+cl_interfaces = gtk.gdk.color_parse( "#e4f29d" )
+viewInterfaces.modify_bg( gtk.STATE_NORMAL, cl_interfaces )
+
 
 janela.connect( "delete-event", on_janela_destroy )
 janela.show()
