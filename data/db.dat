@@ -2466,6 +2466,8 @@ m get_child2
 
 
 
+C gtk.Progress
+
 C gtk.ProgressBar
 a gobject.GObject
 a gtk.Object
@@ -5452,3 +5454,146 @@ p detailed_signal
 m emit_stop_by_name
 p detailed_signal
 m chain
+
+C gtk.CellLayout
+m pack_start
+p cell
+p expand = True
+m pack_end
+p cell
+p expand = True
+m clear
+m get_cells
+m set_attributes
+p cell
+p ...
+m add_attribute
+p cell
+p attribute
+p column
+m set_cell_data_func
+p cell
+p func
+p func_data
+m clear_attributes
+p cell
+m reorder
+p cell
+p position
+
+C gtk.Editable
+m select_region
+p start
+p end
+m get_selection_bounds
+m insert_text
+p text
+p position = 0
+m delete_text
+p start_pos
+p end_pos
+m get_chars
+p start_pos
+p end_pos
+m cut_clipboard
+m copy_clipboard
+m paste_clipboard
+m delete_selection
+m set_position
+p position
+m get_position
+m set_editable
+p is_editable
+m get_editable
+
+C gtk.MenuShell
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.MenuShell
+m append
+p child
+m prepend
+p child
+m insert
+p child
+p position
+m deactivate
+m select_item
+p menu_item
+m deselect
+m activate_item
+p menu_item
+p force_deactivate
+m select_first
+p search_sensitive
+m cancel
+m set_take_focus
+p take_focus
+m get_take_focus
+
+C gtk.CellEditable
+m start_editing
+p event
+m editing_done
+m remove_widget
+
+C atk.Implementor
+m ref_accessible
+
+C gtk.Buildable
+a gobject.GInterface
+a gtk.Buildable
+m add_child
+p builder
+p child
+p type
+m construct_child
+p builder
+p name
+m get_internal_child
+p builder
+p childname
+m get_name
+m parser_finished
+p builder
+m set_name
+p name
+
+C gtk.Activatable
+
+C gtk.Orientable
+
+C gtk.ImageMenuItem
+a gobject.GObject
+a gtk.Object
+a gtk.Widget
+a gtk.Container
+a gtk.Bin
+a gtk.Item
+a gtk.MenuItem
+a gtk.ImageMenuItem
+c gtk.ImageMenuItem
+p stock_id = None
+p accel_group = None
+m set_image
+p image
+m get_image
+
+C gtk.TreeDragDest
+m drag_data_received
+p dest
+p selection_data
+m row_drop_possible
+p dest_path
+p selection_data
+
+C gtk.TreeDragSource
+m row_draggable
+p path
+m drag_data_delete
+p path
+m drag_data_get
+p path
+p selection_data
