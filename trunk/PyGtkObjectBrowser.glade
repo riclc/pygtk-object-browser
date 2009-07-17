@@ -2,14 +2,6 @@
 <interface>
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy toplevel-contextual -->
-  <object class="GtkListStore" id="storeObjetos">
-    <columns>
-      <!-- column-name Icone -->
-      <column type="GdkPixbuf"/>
-      <!-- column-name Nome -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
   <object class="GtkListStore" id="storeMembros">
     <columns>
       <!-- column-name Estrela -->
@@ -48,6 +40,16 @@
       <column type="gchararray"/>
       <!-- column-name Parâmetros -->
       <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="storeObjetos">
+    <columns>
+      <!-- column-name Icone -->
+      <column type="GdkPixbuf"/>
+      <!-- column-name Nome -->
+      <column type="gchararray"/>
+      <!-- column-name Interface -->
+      <column type="PangoStyle"/>
     </columns>
   </object>
   <object class="GtkWindow" id="window">

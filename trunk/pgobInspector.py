@@ -427,6 +427,22 @@ class Inspector:
             self.app.storeSignals.append( [img, sig, sig_id, sig_ret, s_sig_params] )
 
 
+
+    def is_interface(self, full_class_name):
+
+        class_name, class_type, class_pak = \
+            self.describe_full_class_name( full_class_name )
+
+        try:
+            type_name = gobject.type_name( class_type )
+            type_info = gobject.type_from_name( type_name )
+        except:
+            return False
+
+        return type_info.is_interface()
+
+
+
 # If you run this file, then the program will run.
 if __name__ == '__main__':
     import PyGtkObjectBrowser

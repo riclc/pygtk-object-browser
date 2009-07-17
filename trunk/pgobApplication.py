@@ -164,7 +164,12 @@ class Application:
 
         for obj in objs:
             img = self.object_images.get_image( obj )
-            self.storeObjetos.append( [ img, obj ] )
+
+            style = pango.STYLE_NORMAL
+            if self.settings.InterfaceFont and self.inspector.is_interface( obj ):
+                style = pango.STYLE_ITALIC
+
+            self.storeObjetos.append( [ img, obj, style ] )
 
 
 
@@ -182,7 +187,8 @@ class Application:
 
 
     def new_column(self, fonte = None, text_src = None, img_src = None, \
-        cor_texto = '', resize = False, title = '', sort_id = -1):
+        cor_texto = '', resize = False, title = '', sort_id = -1, \
+        style_texto = -1):
 
         coluna = gtk.TreeViewColumn()
         coluna.set_spacing( 3 )
@@ -205,6 +211,10 @@ class Application:
 
             coluna.pack_start( textRenderer, expand=False )
             coluna.add_attribute( textRenderer, "text", text_src )
+
+            if style_texto != -1:
+                coluna.add_attribute( textRenderer, "style", style_texto )
+
 
         coluna.set_sort_column_id( sort_id )
         return coluna
@@ -242,7 +252,9 @@ class Application:
     def prepare_lists(self):
 
         # Object list
-        self.listaObjetos.append_column( self.new_column("9", text_src=1, img_src=0) )
+        self.listaObjetos.append_column( \
+            self.new_column("9", text_src=1, img_src=0, style_texto=2) )
+
 
         # Member list
         self.storeMembros.set_sort_func( 0, self.sort_func_metodo_estrela )
