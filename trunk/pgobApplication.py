@@ -71,6 +71,7 @@ class Application:
 
         self.janela = builder.get_object( "window" )
         self.textDoc = builder.get_object( "textDoc")
+        self.boxLogo = builder.get_object( "boxLogo" )
 
 
         # check buttons
@@ -140,6 +141,9 @@ class Application:
 
         self.viewInterfaces.connect_after( "expose_event", \
             self.on_ancestry_expose, "interfaces" )
+
+        self.boxLogo.connect( "expose_event", self.on_box_logo_expose )
+        self.boxLogo.set_app_paintable( True )
 
 
 
@@ -346,6 +350,30 @@ class Application:
 
         return False
 
+
+
+    def on_box_logo_expose(self, widget, event):
+
+        widget = widget.get_child()
+        w = widget.get_allocation().width
+        h = widget.get_allocation().height
+
+        cr = event.window.cairo_create()
+
+        grad = cairo.LinearGradient( 0, 0, w-1, 0 )
+        grad.add_color_stop_rgba( 1.0,   1, 1, 1, 0.0 )
+        grad.add_color_stop_rgba( 0.0,   0.3, 0.6, 1, 0.5 )
+
+        cr.set_source( grad )
+        cr.rectangle( 0, 0, w-1, h-1 )
+        cr.fill()
+
+        cr.set_line_width( 1 )
+        cr.set_source_rgba( 0.2, 0.4, 0.8, 0.5 )
+        cr.rectangle( 0 + 0.5, 0 + 0.5, w-1, h-1 )
+        cr.stroke()
+
+        return False
 
 
 
