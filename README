@@ -2,6 +2,12 @@ PyGtk Object Browser
 ====================
 Copyright (c) 2009, Ricardo Lenz
 
+-------
+Version
+-------
+Current version: 0.9.9
+
+
 -----------
 Description
 -----------
@@ -9,12 +15,24 @@ Description
 Just a very small application to help PyGTK programmers out there.
 But it can be improved in a number of ways!
 
+
 -----------
 Installation
 ------------
 
-There is no need to install anything. Just run the python file.
-Make sure the "data" folder is in the same folder where the
-python file is (it should be already).
+There is no need to install anything.
+Just run the "PyGtkObjectBrowser.py" file.
 
-All images are either from Glade or done by myself.
+But please make sure that the "data" folder is in the same folder
+where the python files are! (But it should be there already.)
+
+
+----------------
+Component Images
+----------------
+
+All images are either from Glade or done by myself. Just email me
+if you want to know which is which :)
+
+Anyway, I would like to know if you use some of the images I have
+made. Just send me an email and I will be happy :P
