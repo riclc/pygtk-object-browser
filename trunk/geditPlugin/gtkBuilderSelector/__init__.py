@@ -1,0 +1,139 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+# Copyright (C) 2009 Ricardo Lenz
+#
+# This program is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program; if not, write to the Free Software Foundation, Inc., 51
+# Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+
+
+import gedit
+import gtk
+import os
+import os.path
+
+from docAnalyser import DocAnalyser
+import selector
+
+
+ui = """
+<ui>
+    <menubar name="MenuBar">
+    <menu name="ToolsMenu" action="Tools">
+      <placeholder name="ToolsOps_2">
+        <menuitem action="OpenGuiFile" />
+      </placeholder>
+    </menu>
+    </menubar>
+
+    <toolbar name="ToolBar">
+        <separator/>
+        <toolitem action="OpenGuiFile"/>
+    </toolbar>
+</ui>
+"""
+
+
+
+class GtkBuilderSelectorPlugin(gedit.Plugin):
+
+    def __init__(self):
+        gedit.Plugin.__init__(self)
+
+        self.action_group = None
+        self.ui_id = None
+        self.window = None
+
+        self.analyser = DocAnalyser()
+
+
+    def activate(self, window):
+        self.window = window
+        self.action_group = gtk.ActionGroup('GtkBuilderSelectorPluginActions')
+        self.action_group.add_actions([(
+            'OpenGuiFile',
+            gtk.STOCK_PAGE_SETUP,
+            'Open _GUI file...',
+            None,
+            'Opens the GtkBuilder .glade file being used in the code',
+            self.on_open_gui_file_activate
+        )])
+
+        uim = window.get_ui_manager()
+        uim.insert_action_group(self.action_group, -1)
+        self.ui_id = uim.add_ui_from_string( ui )
+
+
+    def deactivate(self, window):
+        uim = window.get_ui_manager()
+        uim.remove_ui(self.ui_id)
+        uim.remove_action_group(self.action_group)
+        uim.ensure_update()
+
+        self.action_group = None
+        self.ui_id = None
+        self.window = None
+
+
+    def on_open_gui_file_activate(self, *args):
+        doc = self.window.get_active_document()
+
+        self.analyser.inspect( doc )
+
+        if not self.analyser.builder_file:
+            self.alert( "No gtk.Builder file found in the source!" )
+            return
+
+        doc_file = doc.get_uri()
+        if not doc_file:
+            self.alert( "No active document valid URI!" )
+            return
+
+        doc_file = doc_file.replace( "file://", "" )
+        doc_dir = os.path.dirname( doc_file )
+
+        glade_file = os.path.join( doc_dir, self.analyser.builder_file )
+        if os.path.exists( glade_file ):
+            print( "Glade file: %s" % glade_file )
+            selector.run( glade_file, self.window, self.code_add )
+        else:
+            self.alert( "Glade file being used <b>%s</b> was not found!" % glade_file )
+
+
+    def update_ui(self, window):
+        doc = self.window.get_active_document()
+        self.action_group.set_sensitive(doc is not None)
+
+
+    def alert(self, s):
+        dlg = gtk.MessageDialog( type = gtk.MESSAGE_INFO, buttons = gtk.BUTTONS_OK )
+        dlg.set_title( "Open GUI file" )
+        dlg.set_markup( s )
+        dlg.run()
+        dlg.destroy()
+
+
+    def code_add(self, code):
+        doc = self.window.get_active_document()
+        view = self.window.get_active_view()
+
+        it = doc.get_end_iter()
+        doc.insert( it, code )
+
+        while gtk.events_pending():
+            gtk.main_iteration( block=False )
+
+        it = doc.get_end_iter()
+        view.scroll_to_iter( it, within_margin = 0.05, \
+            use_align = True, xalign = 0.0, yalign = 1.0 )
