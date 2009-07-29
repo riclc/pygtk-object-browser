@@ -5787,3 +5787,24 @@ p data
 m add_mark
 p mark
 p where
+
+C gtk.FileFilter
+a gobject.GObject
+a gtk.Object
+a gtk.FileFilter
+c gtk.FileFilter
+m set_name
+p name
+m get_name
+m add_mime_type
+p mime_type
+m add_pattern
+p pattern
+m add_custom
+p needed
+p func
+p data
+m get_needed
+m filter
+p filter_info
+m add_pixbuf_formats
