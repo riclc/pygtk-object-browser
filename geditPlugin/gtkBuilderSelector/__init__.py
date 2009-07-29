@@ -24,6 +24,7 @@ import os
 import os.path
 
 from docAnalyser import DocAnalyser
+from newCode import NewCode
 import selector
 
 
@@ -91,13 +92,15 @@ class GtkBuilderSelectorPlugin(gedit.Plugin):
 
         self.analyser.inspect( doc )
 
-        if not self.analyser.builder_file:
-            self.alert( "No gtk.Builder file found in the source!" )
-            return
-
         doc_file = doc.get_uri()
         if not doc_file:
-            self.alert( "No active document valid URI!" )
+            #self.alert( "No active document valid URI!" )
+            NewCode().run( parentWindow = self.window, doc = doc )
+            return
+
+        if not self.analyser.builder_file:
+            #self.alert( "No gtk.Builder file found in the source!" )
+            NewCode().run( parentWindow = self.window, doc = doc, _dir = os.getcwd() )
             return
 
         doc_file = doc_file.replace( "file://", "" )
