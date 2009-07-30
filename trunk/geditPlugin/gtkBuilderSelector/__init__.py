@@ -25,7 +25,7 @@ import os.path
 
 from docAnalyser import DocAnalyser
 from newCode import NewCode
-import selector
+from ide import IDE
 
 
 ui = """
@@ -89,17 +89,16 @@ class GtkBuilderSelectorPlugin(gedit.Plugin):
 
     def on_open_gui_file_activate(self, *args):
         doc = self.window.get_active_document()
+        view = self.window.get_active_view()
 
-        self.analyser.inspect( doc )
+        self.analyser.inspect( doc, view )
 
         doc_file = doc.get_uri()
         if not doc_file:
-            #self.alert( "No active document valid URI!" )
             NewCode().run( parentWindow = self.window, doc = doc )
             return
 
         if not self.analyser.builder_file:
-            #self.alert( "No gtk.Builder file found in the source!" )
             NewCode().run( parentWindow = self.window, doc = doc, _dir = os.getcwd() )
             return
 
@@ -107,9 +106,14 @@ class GtkBuilderSelectorPlugin(gedit.Plugin):
         doc_dir = os.path.dirname( doc_file )
 
         glade_file = os.path.join( doc_dir, self.analyser.builder_file )
+
         if os.path.exists( glade_file ):
-            print( "Glade file: %s" % glade_file )
-            selector.run( glade_file, self.window, self.code_add )
+
+            IDE().run( \
+                glade_file = glade_file, \
+                parentWindow = self.window, \
+                analyser = self.analyser )
+
         else:
             self.alert( "Glade file being used <b>%s</b> was not found!" % glade_file )
 
@@ -125,18 +129,3 @@ class GtkBuilderSelectorPlugin(gedit.Plugin):
         dlg.set_markup( s )
         dlg.run()
         dlg.destroy()
-
-
-    def code_add(self, code):
-        doc = self.window.get_active_document()
-        view = self.window.get_active_view()
-
-        it = doc.get_end_iter()
-        doc.insert( it, code )
-
-        while gtk.events_pending():
-            gtk.main_iteration( block=False )
-
-        it = doc.get_end_iter()
-        view.scroll_to_iter( it, within_margin = 0.05, \
-            use_align = True, xalign = 0.0, yalign = 1.0 )
