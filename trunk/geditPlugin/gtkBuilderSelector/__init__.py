@@ -23,6 +23,7 @@ import gtk
 import os
 import os.path
 
+from msgbox import alert
 from docAnalyser import DocAnalyser
 from newCode import NewCode
 from ide import IDE
@@ -115,17 +116,10 @@ class GtkBuilderSelectorPlugin(gedit.Plugin):
                 analyser = self.analyser )
 
         else:
-            self.alert( "Glade file being used <b>%s</b> was not found!" % glade_file )
+            alert( "Glade file being used <b>%s</b> was not found!" % glade_file, \
+                "Open GUI file" )
 
 
     def update_ui(self, window):
         doc = self.window.get_active_document()
         self.action_group.set_sensitive(doc is not None)
-
-
-    def alert(self, s):
-        dlg = gtk.MessageDialog( type = gtk.MESSAGE_INFO, buttons = gtk.BUTTONS_OK )
-        dlg.set_title( "Open GUI file" )
-        dlg.set_markup( s )
-        dlg.run()
-        dlg.destroy()
