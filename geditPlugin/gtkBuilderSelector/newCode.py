@@ -93,6 +93,7 @@ class NewCode:
             type(obj) == gtk.VPaned or \
             type(obj) == gtk.Expander or \
             type(obj) == gtk.Alignment or \
+            type(obj) == gtk.Fixed or \
             type(obj) == gtk.HSeparator or \
             type(obj) == gtk.VSeparator
 
