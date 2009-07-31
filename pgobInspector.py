@@ -392,7 +392,26 @@ class Inspector:
             else:
                 img = self.get_type_image( 'prop_default' )
 
-            self.app.storeProps.append( [img, pname, ptipo, pdefault, pdesc] )
+            py_ptipo = self.gtype_to_py( ptipo )
+
+            self.app.storeProps.append( [img, pname, py_ptipo, pdefault, pdesc] )
+
+
+
+    def gtype_to_py(self, gt):
+
+        # pythonize types
+
+        if gt == 'void': return 'None'
+        if gt == 'gboolean': return 'bool'
+        if gt == 'gint' or gt == 'guint': return 'int'
+        if gt == 'gfloat' or gt == 'gdouble': return 'float'
+        if gt == 'gchararray': return 'str'
+
+        if gt[:3] == 'Gtk': return "gtk." + gt[3:]
+        if gt[:3] == 'Gdk': return "gtk.gdk." + gt[3:]
+
+        return gt
 
 
 
@@ -409,20 +428,22 @@ class Inspector:
             details = gobject.signal_query( sig, class_type )
 
             sig_id = details[0]
-            sig_ret = details[4].name
+            sig_ret = self.gtype_to_py( details[4].name )
 
             sig_params = details[5]
             if len(sig_params) > 0:
 
                 sparams = []
                 for sig_param in sig_params:
-                    sparams.append( sig_param.name )
+                    sparams.append( self.gtype_to_py( sig_param.name ) )
 
                 s_sig_params = ", ".join( sparams )
             else:
                 s_sig_params = "<None>"
 
             img = self.get_type_image( 'signal_default' )
+            if "-event" in sig:
+                img = self.get_type_image( 'signal_event' )
 
             self.app.storeSignals.append( [img, sig, sig_id, sig_ret, s_sig_params] )
 

@@ -106,6 +106,7 @@ class TypeImages:
         'method_constructor', \
         'estrela', \
         'signal_default', \
+        'signal_event', \
         'prop_default', \
         'prop_int', \
         'prop_bool', \
