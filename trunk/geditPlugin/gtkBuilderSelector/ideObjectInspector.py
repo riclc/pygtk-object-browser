@@ -79,6 +79,7 @@ class ObjectInspector:
 
         self.ide.labAccess.set_markup( \
             "<small><b>%s</b> is not declared in the code.</small>" % sobj )
+        self.ide.btnImplementObject.set_sensitive( True )
 
         if self.ide.analyser:
             aobjs = self.ide.analyser.list_for_get_object
@@ -90,6 +91,7 @@ class ObjectInspector:
                     self.ide.labAccess.set_markup( \
                         "<small><b>%s</b> is declared in the code (<b>line %d</b>)</small>" % \
                         (sobj, lin) )
+                    self.ide.btnImplementObject.set_sensitive( False )
                     break
 
 
@@ -226,11 +228,11 @@ class ObjectInspector:
 
 
 
-    def signal_callback_full(self, signal_it):
+    def signal_callback_full(self, signal_it, indent = ""):
 
         return \
-            "def " + self.signal_callback( signal_it ) + ":\n" + \
-            "    " + self.ide.storeSignals.get_value( signal_it, 3 )
+            indent + "def " + self.signal_callback( signal_it ) + ":\n\n" + \
+            indent + "    " + self.ide.storeSignals.get_value( signal_it, 3 )
 
 
 
@@ -271,21 +273,4 @@ class ObjectInspector:
         code = self.selected_obj.get_name() + ".set_property( " + \
             '"' + prop + '"' + ", " + prop_default + " )"
 
-        self.ide.analyser.code_add( code )
-
-
-
-
-    def on_exec_signal(self, treeview, path, col):
-
-        it = self.ide.storeSignals.get_iter( path )
-        event_name = self.ide.storeSignals.get_value( it, 1 )
-
-        code = "\n" + \
-            self.selected_obj.get_name() + ".connect( " + \
-            '"' + event_name + '"' + ", " + self.signal_callback( it, True ) + " )\n" + \
-            "\n" + \
-            self.signal_callback_full(it) + "\n" + \
-            "\n"
-
-        self.ide.analyser.code_add( code )
+        self.ide.analyser.code_add_to_current_line( code )

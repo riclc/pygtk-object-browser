@@ -38,6 +38,8 @@ class IDE:
         self.storeSignals = builder.get_object( "storeSignals" )
         self.labAccess = builder.get_object( "labAccess" )
         self.btnOpenGlade = builder.get_object( "btnOpenGlade" )
+        self.btnImplementSignal = builder.get_object( "btnImplementSignal" )
+        self.btnImplementObject = builder.get_object( "btnImplementObject" )
 
         self.textInfo.modify_base( gtk.STATE_NORMAL, gtk.gdk.color_parse("#ffffbd") )
         self.textInfo.modify_font( pango.FontDescription("8") )
@@ -56,11 +58,12 @@ class IDE:
         self.formBox.connect_after( "expose-event", self.on_draw_border )
         self.window.connect( "delete-event", self.on_close )
         self.btnOpenGlade.connect( "clicked", self.on_open_glade )
+        self.btnImplementSignal.connect( "clicked", self.on_implement_signal )
+        self.btnImplementObject.connect( "clicked", self.on_implement_object )
 
         self.listProps.connect( "cursor-changed", self.objectInspector.on_select_prop )
         self.listSignals.connect( "cursor-changed", self.objectInspector.on_select_signal )
         self.listProps.connect( "row-activated", self.objectInspector.on_exec_prop )
-        self.listSignals.connect( "row-activated", self.objectInspector.on_exec_signal )
 
 
 
@@ -117,10 +120,46 @@ class IDE:
         return True
 
 
+
+    def on_implement_signal(self, widget):
+
+        path, col = self.listSignals.get_cursor()
+        it = self.storeSignals.get_iter( path )
+
+        obj_name = self.objectInspector.selected_obj.get_name()
+        event_name = self.storeSignals.get_value( it, 1 )
+        callback_name = self.objectInspector.signal_callback( it, True )
+        callback_decl = self.objectInspector.signal_callback_full( it, indent = "    " )
+
+        self.analyser.code_add_for_event( obj_name, event_name, \
+            callback_name, callback_decl )
+
+        self.on_close()
+
+        while gtk.events_pending():
+            gtk.main_iteration( block=False )
+
+        self.analyser.view.place_cursor_onscreen()
+        self.analyser.view.grab_focus()
+
+        while gtk.events_pending():
+            gtk.main_iteration( block=False )
+
+
+
+    def on_implement_object(self, widget):
+
+        obj_name = self.objectInspector.selected_obj.get_name()
+        self.analyser.code_add_for_get_object( obj_name )
+        self.on_close()
+
+
+
     def on_open_glade(self, sender):
 
         if self.glade_file:
             os.system( "glade-3 %s &" % self.glade_file )
+            self.on_close()
         else:
             alert( "No glade file!", "Open Glade file" )
 
