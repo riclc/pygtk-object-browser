@@ -7,6 +7,7 @@ import pango
 import os
 import os.path
 
+from msgbox import alert
 from images import Images
 from ideForm import Form
 from ideFormTitleBar import draw_titlebar
@@ -36,6 +37,7 @@ class IDE:
         self.listSignals = builder.get_object( "listSignals" )
         self.storeSignals = builder.get_object( "storeSignals" )
         self.labAccess = builder.get_object( "labAccess" )
+        self.btnOpenGlade = builder.get_object( "btnOpenGlade" )
 
         self.textInfo.modify_base( gtk.STATE_NORMAL, gtk.gdk.color_parse("#ffffbd") )
         self.textInfo.modify_font( pango.FontDescription("8") )
@@ -45,12 +47,15 @@ class IDE:
         self.objectInspector = ObjectInspector( self )
         self.form = Form( self )
         self.analyser = None
+        self.glade_file = None
 
         self.formTitleBar.set_app_paintable( True )
         self.titleBarClose = self.images.by_name( "close" )
 
         self.formTitleBar.connect( "expose-event", self.on_draw_titlebar )
+        self.formBox.connect_after( "expose-event", self.on_draw_border )
         self.window.connect( "delete-event", self.on_close )
+        self.btnOpenGlade.connect( "clicked", self.on_open_glade )
 
         self.listProps.connect( "cursor-changed", self.objectInspector.on_select_prop )
         self.listSignals.connect( "cursor-changed", self.objectInspector.on_select_signal )
@@ -64,10 +69,11 @@ class IDE:
             analyser = None):
 
         self.analyser = analyser
+        self.glade_file = glade_file
 
         self.window.show()
 
-        if glade_file:
+        if self.glade_file:
             self.form.load_from_file( glade_file )
 
         self.parentWindow = parentWindow
@@ -96,6 +102,27 @@ class IDE:
         draw_titlebar( cr, w, h, self.titleBarClose )
         return False
 
+
+    def on_draw_border(self, sender, event):
+
+        cr = event.window.cairo_create()
+        w = self.formBox.get_allocation().width
+        h = self.formBox.get_allocation().height
+
+        cr.set_line_width( 1 )
+        cr.set_source_rgba( 0, 0, 0, 1 )
+        cr.rectangle( 0 + 0.5, -1 + 0.5, w-1, h )
+        cr.stroke()
+
+        return True
+
+
+    def on_open_glade(self, sender):
+
+        if self.glade_file:
+            os.system( "glade-3 %s &" % self.glade_file )
+        else:
+            alert( "No glade file!", "Open Glade file" )
 
 
 if __name__ == '__main__':
