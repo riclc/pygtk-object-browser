@@ -1,8 +1,0 @@
-[Gedit Plugin]
-Loader=python
-Module=gtkBuilderSelector
-IAge=2
-Name=GtkBuilderSelector
-Description=Edits with the .glade file used in the code
-Authors=Ricardo Lenz <riclc@hotmail.com>
-Copyright=Copyright (C) 2009 Ricardo Lenz
